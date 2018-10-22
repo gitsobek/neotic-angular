@@ -1,0 +1,101 @@
+@import "src/assets/scss/imports";
+
+$buttonColor: #2E2D3B;
+
+.col {
+  padding: 0;
+}
+
+.col-sm-10 {
+  padding-left: 0;
+  padding-right: 0;
+  border: 2px solid;
+  border-top-style: none;
+  border-bottom-style: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+  @media only screen and (max-width: $screen-sm) {
+    border: 0;
+  }
+}
+
+.carousel-inner img {
+  width: 800px;
+  height: 500px;
+
+  @media only screen and (max-width: 650px) {
+    height: 300px;
+  }
+}
+
+.carousel-caption {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  @media only screen and (max-width: 320px) {
+    top: 40%;
+  }
+}
+
+.carousel-caption h3 {
+  font-weight: 500;
+  text-shadow: 1px 1px 10px #000;
+  padding-bottom: 0.5rem;
+}
+
+.btn {
+  margin: 5px;
+}
+
+.btn-primary {
+  background-color: #6648b1;
+  border: 1px solid #6648b1;
+
+  &:hover {
+    background-color: #563d7c;
+    border: 1px solid #563d7c;
+  }
+}
+
+.field input {
+  height: 35px;
+  width: 300px;
+  background-color: #101113;
+  outline: none;
+  border: none;
+  border-radius: 35px;
+  font-size: 10px;
+  color: white;
+  letter-spacing: 1px;
+  padding-left: 15px;
+
+  @media only screen and (max-width: 380px) {
+    width: 200px;
+  }
+}
+
+.field button {
+  height: 36px;
+  width: 100px;
+  background-color: $buttonColor;
+  font-size: 10px;
+  color: white;
+  letter-spacing: 1px;
+  outline: none;
+  border: none;
+  border-radius: 35px;
+  position: relative;
+  z-index: 999;
+  box-shadow: 0 1px #999;
+
+  &:hover {
+    background-color: lighten($buttonColor, 10%);
+  }
+
+  &:active {
+    background-color: lighten($buttonColor, 10%);
+    box-shadow: 0 2x #666;
+    transform: translateY(2px);
+  }
+}

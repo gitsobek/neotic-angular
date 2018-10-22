@@ -1,0 +1,61 @@
+@import "src/assets/scss/imports";
+
+.padding {
+  padding-bottom: 2rem;
+}
+
+.welcome {
+  margin: 0 auto;
+  padding-top: 3rem;
+}
+
+.welcome hr {
+  border-top: 2px solid #b4b4b4;
+  width: 95%;
+  margin-top: .6rem;
+  margin-bottom: 2rem;
+}
+
+.col-sm-10 {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.container-fluid {
+  background: #13191E url("/src/assets/img/pattern.svg") top left/auto repeat;
+  border: 2px solid;
+  border-top-style: none;
+  border-bottom-style: none;
+  box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
+
+  @media only screen and (max-width: $screen-sm) {
+    border: 0;
+  }
+}
+
+.display-4 {
+  @media (max-width: $screen-sm) {
+    font-size: 2.5em;
+  }
+}
+
+.box-info {
+  padding-top: 30px;
+}
+
+.box-img {
+  margin-bottom: 5px;
+}
+
+.lead {
+  color: white;
+  padding: 0 10px;
+
+  @media only screen and (max-width: 320px) {
+    padding: 0 2px;
+  }
+}
+
+h1, h3 {
+  color: white;
+}

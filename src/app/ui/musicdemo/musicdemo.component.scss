@@ -1,0 +1,16 @@
+@import "src/assets/scss/imports";
+
+.col-sm-10 {
+  padding-left: 0;
+  padding-right: 0;
+  background-color: white;
+  height: 300px;
+  border: 2px solid;
+  border-top-style: none;
+  border-bottom-style: none;
+  box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
+
+  @media only screen and (max-width: $screen-sm) {
+    border: 0;
+  }
+}

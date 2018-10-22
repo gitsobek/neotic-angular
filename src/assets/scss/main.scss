@@ -1,7 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Overpass:300,400,600,700&amp;subset=latin-ext');
+@import "imports.scss";
 
 html, body {
-  width: 100%;
-  height: 100%;
-  font-family: Overpass;
+  font-family: Titillium Web;
+  background-color:#484d54;
 }
