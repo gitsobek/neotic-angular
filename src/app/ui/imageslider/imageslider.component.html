@@ -19,12 +19,12 @@
           </div>
           <div class="carousel-item">
             <img class="d-block w-100" src="../assets/img/secondslide.jpeg" alt="Drugi slajd">
-            <div class="carousel-caption">
+            <div (focus)="pauseCarousel()" class="carousel-caption">
               <h3 class="display-5">Otrzymuj nowe informacje na maila.</h3>
-              <span class="field">
-                <input type="email" placeholder="Podaj maila">
-                <button type="button" id="mailNotifBtn">Informuj mnie</button>
-              </span>
+              <form #formcontrol="ngForm" class="field">
+                <input [(ngModel)]="emailName" name="emailName" type="text" placeholder="Podaj maila" #email email required>
+                <button (click)="addEmail(email)" type="submit" name="button" [disabled]="!formcontrol.form.valid">Informuj mnie</button>
+              </form>
             </div>
           </div>
           <div class="carousel-item">

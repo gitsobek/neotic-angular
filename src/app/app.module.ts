@@ -1,9 +1,13 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DeviceDetectorModule } from 'ngx-device-detector';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { AppComponent } from './app.component';
 import { UiModule } from './ui/ui.module';
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
@@ -11,8 +15,13 @@ import { UiModule } from './ui/ui.module';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
     UiModule,
-    DeviceDetectorModule.forRoot()
+    DeviceDetectorModule.forRoot(),
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
