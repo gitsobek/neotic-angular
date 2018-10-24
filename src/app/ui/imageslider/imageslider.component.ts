@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MailnotificationService } from 'src/app/core/services/mailnotification.service';
+import { NotificationsService } from 'angular2-notifications';
+
 import 'bootstrap';
 import * as $ from 'jquery';
 
@@ -11,7 +13,9 @@ import * as $ from 'jquery';
 })
 export class ImagesliderComponent implements OnInit {
 
-  constructor(private _mailService: MailnotificationService) { }
+  constructor(
+    private _mailService: MailnotificationService,
+    private _service: NotificationsService) { }
 
   ngOnInit() {}
 
@@ -20,7 +24,10 @@ export class ImagesliderComponent implements OnInit {
   }
 
   addEmail(email) {
-    this._mailService.sendEmailAdress(email);
+    this._mailService.sendEmailAdress(email).subscribe(result => {
+      this._service.success('Komunikat', 'Mail został dodany.');
+    }, err => {
+      this._service.error('Komunikat', 'Podany mail już istnieje.');
+    });
   }
-
 }

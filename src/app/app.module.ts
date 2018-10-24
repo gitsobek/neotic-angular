@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DeviceDetectorModule } from 'ngx-device-detector';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 
 import { UiModule } from './ui/ui.module';
 import { AppComponent } from './app.component';
@@ -22,6 +23,7 @@ import { AppComponent } from './app.component';
     DeviceDetectorModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
+    SimpleNotificationsModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

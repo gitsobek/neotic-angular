@@ -13,11 +13,8 @@ export class MailnotificationService {
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json');
 
-    this.http.post(this.apiUrl + 'emails', JSON.stringify(email), {
+    return this.http.post(this.apiUrl + 'emails', JSON.stringify({ email: email}), {
       headers: headers
-    })
-    .subscribe(data => {
-      console.log(data);
     })
   }
 }

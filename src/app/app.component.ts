@@ -8,4 +8,12 @@ import { Component } from '@angular/core';
 
 export class AppComponent {
   title = 'neotic-app';
+
+  public options = {
+    position: ["middle", "right"],
+    timeOut: 3000,
+    showProgressBar: true,
+    pauseOnHover: true,
+    lastOnBottom: false
+  }
 }
