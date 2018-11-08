@@ -1,6 +1,37 @@
 @import "src/assets/scss/imports";
 
 .col-sm-10 {
+  height: 500px;
+  background-color: #f9d29d;
+  background-image: linear-gradient(315deg, #f9d29d 0%, #ffd8cb 74%);
+
+  p {
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 400;
+  }
+}
+
+.jumbotron {
+  background-color: inherit;
+  padding: 2rem 1rem;
+  margin-bottom: 0;
+}
+
+.music-samples-box {
+  width: 320px;
+  margin: 0 20px;
+  padding: 10px;
+}
+
+.small-box, .large-box {
+  display: flex;
+  justify-content: center;
+  margin: 16px;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.large-box {
   height: 300px;
-  background-color: white;
 }

@@ -6,24 +6,31 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeinfoComponent } from './homeinfo/homeinfo.component';
 import { MusicdemoComponent } from './musicdemo/musicdemo.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from '../material.module';
+import { PlayerBoxComponent } from './player-box/player-box.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialModule
   ],
   declarations: [
     HeaderComponent,
     ImagesliderComponent,
     HomeinfoComponent,
     MusicdemoComponent,
-    FooterComponent],
+    FooterComponent,
+    PlayerBoxComponent
+    ],
   exports: [
     HeaderComponent,
     ImagesliderComponent,
     HomeinfoComponent,
     MusicdemoComponent,
-    FooterComponent]
+    FooterComponent,
+    PlayerBoxComponent
+  ]
 })
 export class UiModule { }
