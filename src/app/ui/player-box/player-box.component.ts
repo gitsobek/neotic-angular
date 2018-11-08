@@ -17,6 +17,10 @@ export class PlayerBoxComponent implements OnInit {
   ngOnInit() {
   }
 
+  playSong() {
+    console.log(this.song.id);
+  }
+
   getImageUrl() {
     if(this.song && this.song.imageUrl) {
       return this.song.imageUrl;

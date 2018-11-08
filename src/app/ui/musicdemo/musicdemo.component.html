@@ -6,7 +6,7 @@
       <div class="container">
         <div class="jumbotron">
           <p>Posłuchaj co jest obecnie na czasie w neo-tycznym społeczeństwie</p>
-          <mat-tab-group mat-stretch-tabs dynamicHeight>
+          <mat-tab-group mat-stretch-tabs dynamicHeight (selectedTabChange)="onLinkClick($event)">
             <mat-tab label="Rap">
               <div class="large-box mat-elevation-z4">
                 <app-player-box *ngFor="let song of songs" [song]="song"></app-player-box>
@@ -14,7 +14,7 @@
             </mat-tab>
             <mat-tab label="House">
               <div class="large-box mat-elevation-z4">
-                Large content
+                <app-player-box *ngFor="let song of songs" [song]="song"></app-player-box>
               </div>
             </mat-tab>
             <mat-tab label="Funk">

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Song } from 'src/app/core/models/Song';
 import { SongsService } from 'src/app/core/services/songs.service';
+import { MatTabChangeEvent } from '@angular/material';
 
 @Component({
   selector: 'app-musicdemo',
@@ -11,7 +12,7 @@ import { SongsService } from 'src/app/core/services/songs.service';
 export class MusicdemoComponent implements OnInit {
 
   songs: Song[];
-  genre = 'edm'
+  genre = 'rap'
 
   private songs$;
 
@@ -28,7 +29,18 @@ export class MusicdemoComponent implements OnInit {
     });
   }
 
+  onLinkClick(event: MatTabChangeEvent) {
+    if(event.index == 0) {
+      this.genre = 'rap';
+      this.getSongs();
+    } else if (event.index == 1) {
+      this.genre = 'edm';
+      this.getSongs();
+    }
+  }
+
   ngOnDestroy() {
     this.songs$.unsubscribe();
   }
+
 }

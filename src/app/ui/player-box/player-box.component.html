@@ -1,5 +1,8 @@
 <div class="player-box">
-  <img class='player-box__image' [src]='getImageUrl()'/>
+  <div class="player-box__control">
+    <img (click)="playSong()" class="player-box__controller" src="../../../assets/img/play-button.png"/>
+    <img class='player-box__image' [src]='getImageUrl()'/>
+  </div>
   <div class="player-box__content">
     <span class="player-box__content-title">{{ song.title }}</span>
     <span class="player-box__content-artist">{{ song.artist }}</span>
