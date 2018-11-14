@@ -2,29 +2,29 @@
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="#">
-          <div class="navbar-brand-name">
-            <img class="navbar-logo-custom animated fadeInLeft slow" src="../assets/img/neotic-logo-nav.png"/>
-            <p class="navbar-text animated fadeIn slow">NEOTIC</p>
-          </div>
+        <div class="navbar-brand-name">
+          <img class="navbar-logo-custom animated fadeInLeft slow" src="../assets/img/neotic-logo-nav.png"/>
+          <p class="navbar-text animated fadeIn slow">NEOTIC</p>
+        </div>
       </a>
-  </div>
+    </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" href="#">Główna</a>
+          <a data-toggle="collapse" data-target=".navbar-collapse" class="nav-link" (click)="triggerScrollToOffsetOnly(-5000)">Główna</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">O projekcie</a>
+          <a data-toggle="collapse" data-target=".navbar-collapse" class="nav-link" (click)="triggerScroll('info-destination')">O projekcie</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Nowości</a>
+          <a data-toggle="collapse" data-target=".navbar-collapse" class="nav-link" (click)="triggerScroll('music-destination')">Nowości</a>
         </li>
         <div class="dropdown-divider"></div>
         <li class="nav-item">
-          <a [ngClass]="!isMobile ? 'nav-button-login' : 'nav-login-mobile'" class="nav-link" href="#">Logowanie</a>
+          <a [ngClass]="!isMobile ? 'nav-button-login' : 'nav-login-mobile'" class="nav-link" data-toggle="collapse" data-target=".navbar-collapse" href="#">Logowanie</a>
         </li>
       </ul>
     </div>

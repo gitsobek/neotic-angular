@@ -6,8 +6,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DeviceDetectorModule } from 'ngx-device-detector';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SimpleNotificationsModule } from 'angular2-notifications';
-import { NgxSoundmanager2Module } from 'ngx-soundmanager2';
 import { MaterialModule } from './material.module';
+import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 
 import { UiModule } from './ui/ui.module';
 import { AppComponent } from './app.component';
@@ -30,7 +30,7 @@ import { RadioService } from './core/http/radio.service';
     FormsModule,
     ReactiveFormsModule,
     SimpleNotificationsModule.forRoot(),
-    NgxSoundmanager2Module.forRoot(),
+    ScrollToModule.forRoot(),
     MaterialModule
   ],
   providers: [

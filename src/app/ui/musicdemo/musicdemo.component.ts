@@ -26,6 +26,8 @@ export class MusicdemoComponent implements OnInit, OnDestroy {
     this.getSongs();
   }
 
+
+
   getSongs(): void {
     this.songs$ = this._songsService.getTrendingSongs(this.genre)
       .subscribe(songs => {
