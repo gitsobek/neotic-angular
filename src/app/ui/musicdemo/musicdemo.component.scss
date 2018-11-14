@@ -5,7 +5,13 @@
   background-color: #f9d29d;
   background-image: linear-gradient(315deg, #f9d29d 0%, #ffd8cb 74%);
 
-  p {
+  @media (min-width: 300px) and (max-width: 991px) {
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    height: auto;
+  }
+
+  .message {
     text-align: center;
     font-size: 1.4rem;
     font-weight: 400;
@@ -24,14 +30,22 @@
   padding: 10px;
 }
 
-.small-box, .large-box {
+.large-box {
   display: flex;
+  height: 300px;
   justify-content: center;
   margin: 16px;
   padding: 16px;
   border-radius: 8px;
-}
 
-.large-box {
-  height: 300px;
+  @media (min-width: 992px) and (max-width: 1200px) {
+    justify-content: space-evenly;
+  }
+
+  @media (min-width: 300px) and (max-width: 991px) {
+    flex-wrap: wrap;
+    justify-content: space-around;
+    height: 500px;
+  }
+
 }

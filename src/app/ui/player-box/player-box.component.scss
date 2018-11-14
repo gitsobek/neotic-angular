@@ -39,6 +39,11 @@
     z-index: 2;
   }
 
+  div.player-box__control:hover .player-box__controller:hover {
+    filter: brightness(105%);
+    transform: scale(1.04, 1.04);
+  }
+
   div.player-box__control:hover .player-box__image {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     transform: scale(1.02, 1.02);
@@ -66,5 +71,92 @@
 
   &__content-artist {
     color: #333;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+  .player-box {
+    width: 150px;
+    height: 150px;
+    margin: 2px 4px;
+
+    &__image {
+      width: 150px;
+      height: 150px;
+    }
+
+    &__controller {
+      width: 50px;
+      height: 50px;
+    }
+  }
+}
+
+@media (min-width: 500px) and (max-width: 991px) {
+  .player-box {
+    width: 125px;
+    height: 125px;
+    margin: 10px 3px;
+
+    &__image {
+      width: 125px;
+      height: 125px;
+    }
+
+    &__controller {
+      width: 38px;
+      height: 38px;
+    }
+  }
+}
+
+@media (min-width: 330px) and (max-width: 499px) {
+  .player-box {
+    width: 100px;
+    height: 100px;
+    margin: 10px 3px;
+
+    &__image {
+      width: 100px;
+      height: 100px;
+    }
+
+    &__controller {
+      width: 25px;
+      height: 25px;
+    }
+
+    &__content {
+      font-size: 10px;
+    }
+  }
+}
+
+@media (min-width: 275px) and (max-width: 329px) {
+  .player-box {
+    width: 85px;
+    height: 85px;
+    margin: 13px 3px;
+
+    &__image {
+      width: 85px;
+      height: 85px;
+    }
+
+    &__controller {
+      width: 25px;
+      height: 25px;
+    }
+
+    &__content {
+      font-size: 10px;
+    }
+  }
+}
+
+@media screen and (max-width: $screen-sm) {
+  .player-box__controller {
+    opacity: 1;
+    z-index: 2;
   }
 }

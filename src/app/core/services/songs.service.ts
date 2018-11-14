@@ -28,6 +28,7 @@ export class SongsService {
       data.data.forEach(item => {
         var song: Song = <Song>{};
         song.id = item._id;
+        song.slug = item.slug;
         song.title = item.title;
         song.artist = item.artist;
         song.imageUrl = item.imageUrl;

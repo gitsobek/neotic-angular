@@ -1,6 +1,7 @@
 <div class="player-box">
   <div class="player-box__control">
-    <img (click)="playSong()" class="player-box__controller" src="../../../assets/img/play-button.png"/>
+    <img *ngIf="!_audioService.audios[song.slug] || _audioService.audios[song.slug].paused" (click)="playSong()" class="player-box__controller" src="../../../assets/img/play-button.png"/>
+    <img *ngIf="_audioService.audios[song.slug] && !_audioService.audios[song.slug].paused" (click)="stopSong()" class="player-box__controller" src="../../../assets/img/pause.png"/>
     <img class='player-box__image' [src]='getImageUrl()'/>
   </div>
   <div class="player-box__content">

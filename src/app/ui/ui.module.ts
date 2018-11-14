@@ -21,16 +21,16 @@ import { PlayerBoxComponent } from './player-box/player-box.component';
     ImagesliderComponent,
     HomeinfoComponent,
     MusicdemoComponent,
-    FooterComponent,
-    PlayerBoxComponent
-    ],
+    PlayerBoxComponent,
+    FooterComponent
+  ],
   exports: [
     HeaderComponent,
     ImagesliderComponent,
     HomeinfoComponent,
     MusicdemoComponent,
-    FooterComponent,
-    PlayerBoxComponent
+    PlayerBoxComponent,
+    FooterComponent
   ]
 })
 export class UiModule { }

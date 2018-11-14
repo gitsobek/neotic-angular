@@ -1,14 +1,9 @@
 export class Song {
-	id?: number;
+  id?: number;
+  slug: string;
 	title: string;
 	artist: string;
 	genre: string;
   imageUrl: string;
   duration: number
 }
-
-// export const SONGS = [
-//   {title: 'Mr. IQ'},
-//   {title: 'Magneta'},
-//   {title: 'Bombasto'}
-// ];

@@ -1,22 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Song } from 'src/app/core/models/Song';
 import { SongsService } from 'src/app/core/services/songs.service';
 import { MatTabChangeEvent } from '@angular/material';
+import { AudioService } from 'src/app/core/services/audio.service';
 
 @Component({
   selector: 'app-musicdemo',
   templateUrl: './musicdemo.component.html',
   styleUrls: ['./musicdemo.component.scss'],
-  providers: [SongsService]
+  providers: []
 })
-export class MusicdemoComponent implements OnInit {
+export class MusicdemoComponent implements OnInit, OnDestroy {
 
   songs: Song[];
   genre = 'rap'
 
   private songs$;
 
-  constructor(private _songsService: SongsService) {}
+  constructor(
+    private _songsService: SongsService,
+    private _audioService: AudioService
+  ) {}
 
   ngOnInit() {
     this.getSongs();
@@ -41,6 +45,7 @@ export class MusicdemoComponent implements OnInit {
 
   ngOnDestroy() {
     this.songs$.unsubscribe();
+    this._audioService.deleteAllSongs();
   }
 
 }

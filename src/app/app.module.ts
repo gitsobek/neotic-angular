@@ -11,6 +11,10 @@ import { MaterialModule } from './material.module';
 
 import { UiModule } from './ui/ui.module';
 import { AppComponent } from './app.component';
+import { NeoticService } from './core/http/neotic.service';
+import { AudioService } from './core/services/audio.service';
+import { SongsService } from './core/services/songs.service';
+import { RadioService } from './core/http/radio.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +33,12 @@ import { AppComponent } from './app.component';
     NgxSoundmanager2Module.forRoot(),
     MaterialModule
   ],
-  providers: [],
+  providers: [
+    AudioService,
+    NeoticService,
+    SongsService,
+    RadioService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
