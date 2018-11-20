@@ -1,22 +1,41 @@
-import { Component, OnInit, ViewChild, ElementRef} from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy} from '@angular/core';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { ScrollToService, ScrollToConfigOptions } from '@nicky-lenaers/ngx-scroll-to';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
 
-  isMobile;
+  isMobile: boolean;
+  isLoginPage: boolean;
 
-  constructor(private deviceService: DeviceDetectorService,
-    private _scrollToService: ScrollToService) {
-    this.checkDeviceType();
+  private subscription: Subscription;
+
+  constructor(
+    private deviceService: DeviceDetectorService,
+    private _scrollToService: ScrollToService,
+    private route: ActivatedRoute,
+    private router: Router
+    ) {
+      this.checkDeviceType();
    }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.subscription = this.router.events.subscribe(data => {
+      if(data instanceof NavigationEnd) {
+        if(data.url.includes('/login') || data.url.includes('/register')) {
+          this.isLoginPage = true;
+        } else {
+          this.isLoginPage = false;
+        }
+      }
+    })
+  }
 
   public triggerScrollToOffsetOnly(offset: number = 0) {
 
@@ -50,5 +69,11 @@ export class HeaderComponent implements OnInit {
       this.isMobile = true;
     else
       this.isMobile = false;
+  }
+
+  ngOnDestroy() {
+    if(this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }

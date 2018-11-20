@@ -8,10 +8,16 @@ import { MusicdemoComponent } from './musicdemo/musicdemo.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material.module';
 import { PlayerBoxComponent } from './player-box/player-box.component';
+import { LoginComponent } from './login/login.component';
+import { RouterModule } from '@angular/router';
+import { HomeComponent } from './home/home.component';
+import { RegisterComponent } from './register/register.component';
+
 
 @NgModule({
   imports: [
     CommonModule,
+    RouterModule,
     FormsModule,
     ReactiveFormsModule,
     MaterialModule
@@ -22,7 +28,10 @@ import { PlayerBoxComponent } from './player-box/player-box.component';
     HomeinfoComponent,
     MusicdemoComponent,
     PlayerBoxComponent,
-    FooterComponent
+    FooterComponent,
+    LoginComponent,
+    HomeComponent,
+    RegisterComponent
   ],
   exports: [
     HeaderComponent,
@@ -30,7 +39,9 @@ import { PlayerBoxComponent } from './player-box/player-box.component';
     HomeinfoComponent,
     MusicdemoComponent,
     PlayerBoxComponent,
-    FooterComponent
+    FooterComponent,
+    LoginComponent,
+    RegisterComponent
   ]
 })
 export class UiModule { }

@@ -26,13 +26,17 @@
     font-size: 1.1em !important;
   }
 
+  .nav-transition {
+    transition: color 1s;
+  }
+
   .navbar-nav > li{
     &:not(:last-child) a {
       transition: color 1s;
     }
 
     &:first-child a:hover,
-    &:first-child a:focus {
+    &:first-child a:active {
       color: #00B29A;
       cursor: pointer;
     }

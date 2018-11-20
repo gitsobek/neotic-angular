@@ -14,13 +14,14 @@ import { AppComponent } from './app.component';
 import { NeoticService } from './core/http/neotic.service';
 import { AudioService } from './core/services/audio.service';
 import { SongsService } from './core/services/songs.service';
-import { RadioService } from './core/http/radio.service';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     HttpModule,
     HttpClientModule,
@@ -36,8 +37,7 @@ import { RadioService } from './core/http/radio.service';
   providers: [
     AudioService,
     NeoticService,
-    SongsService,
-    RadioService
+    SongsService
   ],
   bootstrap: [AppComponent]
 })

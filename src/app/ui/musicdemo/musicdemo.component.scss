@@ -40,10 +40,15 @@
     justify-content: space-evenly;
   }
 
-  @media (min-width: 300px) and (max-width: 991px) {
+  @media (min-width: 361px) and (max-width: 991px) {
     flex-wrap: wrap;
     justify-content: space-around;
     height: 500px;
   }
 
+  @media (min-width: 280px) and (max-width: 360px) {
+    flex-wrap: wrap;
+    justify-content: space-around;
+    height: 350px;
+  }
 }

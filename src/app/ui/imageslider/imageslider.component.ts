@@ -27,7 +27,10 @@ export class ImagesliderComponent implements OnInit {
     this._mailService.sendEmailAdress(email).subscribe(result => {
       this._service.success('Komunikat', 'Mail został dodany.');
     }, err => {
-      this._service.error('Komunikat', 'Podany mail już istnieje.');
+      if(err.status === 500 || err.status === 0)
+        this._service.error('Komunikat', 'Błąd serwera.');
+      else
+        this._service.error('Komunikat', 'Podany mail już istnieje.');
     });
   }
 }

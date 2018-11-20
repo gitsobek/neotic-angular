@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { NeoticService } from '../http/neotic.service';
-import { Radios } from '../../core/models/Radio';
 
 @Injectable()
 export class AudioService {
