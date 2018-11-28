@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="#">
@@ -13,24 +13,41 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a [routerLink]="['/']" *ngIf="isMobile" class="nav-link">Główna</a>
-          <a [routerLink]="['/']" *ngIf="!isMobile" class="nav-link nav-transition">Główna</a>
-        </li>
-        <ng-container *ngIf="!isLoginPage">
-          <li class="nav-item">
-            <a *ngIf="isMobile" data-toggle="collapse" data-target=".navbar-collapse" class="nav-link" (click)="triggerScroll('info-destination')">O projekcie</a>
-            <a *ngIf="!isMobile" class="nav-link" (click)="triggerScroll('info-destination')">O projekcie</a>
+
+        <!-- displays navbar for logged user -->
+        <ng-container *ngIf="(authService.user | async) as user; else auth">
+          Witaj {{ user.name }}
+          <li *ngFor="let link of logged" class="nav-item">
+              <a [routerLink]="link.href" class="nav-link">{{ link.title }}</a>
           </li>
           <li class="nav-item">
-            <a *ngIf="isMobile" data-toggle="collapse" data-target=".navbar-collapse" class="nav-link" (click)="triggerScroll('music-destination')">Nowości</a>
-            <a *ngIf="!isMobile" class="nav-link" (click)="triggerScroll('music-destination')">Nowości</a>
-          </li>
-          <div class="dropdown-divider"></div>
-          <li class="nav-item">
-            <a [routerLink]="['login']" [ngClass]="!isMobile ? 'nav-button-login' : 'nav-login-mobile'" class="nav-link">Logowanie</a>
+              <a (click)="authService.logout()" class="nav-link">Wyloguj</a>
           </li>
         </ng-container>
+
+        <!-- displays navbar for guests -->
+        <ng-template #auth>
+          <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+            <a [routerLink]="['/']" [routerLinkActive]="['active']" *ngIf="isMobile" class="nav-link">Główna</a>
+            <a [routerLink]="['/']" *ngIf="!isMobile" class="nav-link nav-transition">Główna</a>
+          </li>
+
+            <!-- displays navbar for guests in login or registration page -->
+            <ng-container *ngIf="!isLoginPage">
+              <li class="nav-item">
+                <a *ngIf="isMobile" data-toggle="collapse" data-target=".navbar-collapse" class="nav-link" (click)="triggerScroll('info-destination')">O projekcie</a>
+                <a *ngIf="!isMobile" class="nav-link" (click)="triggerScroll('info-destination')">O projekcie</a>
+              </li>
+              <li class="nav-item">
+                <a *ngIf="isMobile" data-toggle="collapse" data-target=".navbar-collapse" class="nav-link" (click)="triggerScroll('music-destination')">Nowości</a>
+                <a *ngIf="!isMobile" class="nav-link" (click)="triggerScroll('music-destination')">Nowości</a>
+              </li>
+              <div class="dropdown-divider"></div>
+              <li class="nav-item" class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+                <a [routerLink]="['login']" [routerLinkActive]="['active']" [ngClass]="!isMobile ? 'nav-button-login' : 'nav-login-mobile'" class="nav-link">Logowanie</a>
+              </li>
+          </ng-container>
+        </ng-template>
       </ul>
     </div>
   </div>

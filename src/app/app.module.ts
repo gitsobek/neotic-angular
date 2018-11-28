@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DeviceDetectorModule } from 'ngx-device-detector';
@@ -15,6 +15,10 @@ import { NeoticService } from './core/http/neotic.service';
 import { AudioService } from './core/services/audio.service';
 import { SongsService } from './core/services/songs.service';
 import { AppRoutingModule } from './app-routing.module';
+import { AuthGuardService } from './core/guards/auth-guard.service';
+import { AuthService } from './core/authentication/auth.service';
+import { TokenInterceptor } from './core/interceptors/token.interceptor';
+
 
 @NgModule({
   declarations: [
@@ -35,9 +39,16 @@ import { AppRoutingModule } from './app-routing.module';
     MaterialModule
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+    AuthService,
     AudioService,
     NeoticService,
-    SongsService
+    SongsService,
+    AuthGuardService
   ],
   bootstrap: [AppComponent]
 })

@@ -14,20 +14,30 @@
           </div>
         </div>
         <div class="row text-center padding box-info">
-          <div [@scrollAnimation]="state" class="col-xs-12 col-sm-6 col-md-4">
+          <div *ngIf="!isMobile" [@scrollAnimation]="state" class="col-xs-12 col-sm-6 col-md-4">
             <img class="box-img" src="../assets/img/ear.png"/>
             <h3>Odkrywaj</h3>
             <p class="lead">Nowa muzyka wybrana specjalnie dla Ciebie</p>
           </div>
+          <div *ngIf="isMobile" [@scrollAnimation2]="state" class="col-xs-12 col-sm-6 col-md-4">
+              <img class="box-img" src="../assets/img/ear.png"/>
+              <h3>Odkrywaj</h3>
+              <p class="lead">Nowa muzyka wybrana specjalnie dla Ciebie</p>
+            </div>
           <div [@scrollAnimation2]="state" class="col-xs-12 col-sm-6 col-md-4">
             <img class="box-img" src="../assets/img/collaboration.png"/>
             <h3>Udostępniaj</h3>
             <p class="lead">Wrzucaj własne utwory, które mogą się spodobać innym użytkownikom</p>
           </div>
-          <div [@scrollAnimation3]="state" class="col-sm-12 col-md-4">
+          <div *ngIf="!isMobile" [@scrollAnimation3]="state" class="col-sm-12 col-md-4">
             <img class="box-img" src="../assets/img/coffee-cup.png"/>
             <h3>Zrelaksuj się</h3>
             <p class="lead">Przesłuchaj rekomendowany utwór i oceń go</p>
+          </div>
+          <div *ngIf="isMobile" [@scrollAnimation2]="state" class="col-sm-12 col-md-4">
+              <img class="box-img" src="../assets/img/coffee-cup.png"/>
+              <h3>Zrelaksuj się</h3>
+              <p class="lead">Przesłuchaj rekomendowany utwór i oceń go</p>
           </div>
         </div>
       </div>

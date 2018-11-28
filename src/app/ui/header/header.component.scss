@@ -26,6 +26,13 @@
     font-size: 1.1em !important;
   }
 
+  .navbar-toggler {
+    &:hover,
+    &:active {
+      outline: 0;
+    }
+  }
+
   .nav-transition {
     transition: color 1s;
   }

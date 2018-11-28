@@ -1,5 +1,6 @@
 import { Component, OnInit, HostListener, ElementRef } from '@angular/core';
 import { trigger, state, transition, animate, style } from '@angular/animations';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 @Component({
   selector: 'app-homeinfo',
@@ -45,8 +46,13 @@ import { trigger, state, transition, animate, style } from '@angular/animations'
 export class HomeinfoComponent implements OnInit {
 
   state = 'hide'
+  isMobile: boolean;
 
-  constructor(private el: ElementRef) { }
+  constructor(
+    private el: ElementRef,
+    private deviceService: DeviceDetectorService) {
+    this.checkDeviceType();
+  }
 
   @HostListener('window:scroll', ['$event'])
   checkScroll() {
@@ -61,5 +67,12 @@ export class HomeinfoComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  checkDeviceType() {
+    if(this.deviceService.isMobile() || this.deviceService.isTablet())
+      this.isMobile = true;
+    else
+      this.isMobile = false;
   }
 }

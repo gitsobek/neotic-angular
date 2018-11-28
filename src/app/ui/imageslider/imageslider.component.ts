@@ -4,6 +4,7 @@ import { NotificationsService } from 'angular2-notifications';
 
 import 'bootstrap';
 import * as $ from 'jquery';
+import { ScrollToService, ScrollToConfigOptions } from '@nicky-lenaers/ngx-scroll-to';
 
 @Component({
   selector: 'app-imageslider',
@@ -15,7 +16,8 @@ export class ImagesliderComponent implements OnInit {
 
   constructor(
     private _mailService: MailnotificationService,
-    private _service: NotificationsService) { }
+    private _notifService: NotificationsService,
+    private _scrollToService: ScrollToService) { }
 
   ngOnInit() {}
 
@@ -25,12 +27,30 @@ export class ImagesliderComponent implements OnInit {
 
   addEmail(email) {
     this._mailService.sendEmailAdress(email).subscribe(result => {
-      this._service.success('Komunikat', 'Mail został dodany.');
+      this._notifService.success('Komunikat', 'Mail został dodany.');
     }, err => {
       if(err.status === 500 || err.status === 0)
-        this._service.error('Komunikat', 'Błąd serwera.');
+        this._notifService.error('Komunikat', 'Błąd serwera.');
       else
-        this._service.error('Komunikat', 'Podany mail już istnieje.');
+        this._notifService.error('Komunikat', 'Podany mail już istnieje.');
     });
+  }
+
+  public triggerScroll(destination: string) {
+    // if(this.isMobile) {
+    //   const config: ScrollToConfigOptions = {
+    //     target: destination,
+    //     offset: -75
+    //   };
+
+    //   this._scrollToService.scrollTo(config);
+    // } else {
+      const config: ScrollToConfigOptions = {
+        target: destination,
+        offset: -50
+      };
+
+      this._scrollToService.scrollTo(config);
+
   }
 }

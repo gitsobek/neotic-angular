@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from './core/authentication/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -15,5 +16,9 @@ export class AppComponent {
     showProgressBar: true,
     pauseOnHover: true,
     lastOnBottom: false
+  }
+
+  constructor(authService: AuthService) {
+    authService.getMyProfile();
   }
 }
