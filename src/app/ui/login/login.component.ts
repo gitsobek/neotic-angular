@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { TokenPayload, AuthService } from 'src/app/core/authentication/auth.service';
+import { TokenPayload, LocalAuthService } from 'src/app/core/authentication/localauth.service';
 import { Router } from '@angular/router';
 import { NotificationsService } from 'angular2-notifications';
+import {
+  AuthService,
+  FacebookLoginProvider,
+  GoogleLoginProvider
+} from 'angular-6-social-login';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +21,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private auth: AuthService,
+    private auth: LocalAuthService,
+    private socialAuthService: AuthService,
     private router: Router,
     private _notifService: NotificationsService) { }
 
@@ -53,5 +59,15 @@ export class LoginComponent implements OnInit {
     }
 
     this.login(this.loginForm.value);
+  }
+
+  public signinWithGoogle () {
+    let socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
+
+    this.socialAuthService.signIn(socialPlatformProvider).then(
+      (userData) => {
+         this.auth.sendDataFromGoogleToApi(userData);
+      }
+    );
   }
 }

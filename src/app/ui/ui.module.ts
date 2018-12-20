@@ -12,6 +12,8 @@ import { LoginComponent } from './login/login.component';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { UserPanelComponent } from './user-panel/user-panel.component';
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import { RegisterComponent } from './register/register.component';
     FooterComponent,
     LoginComponent,
     HomeComponent,
-    RegisterComponent
+    RegisterComponent,
+    AdminPanelComponent,
+    UserPanelComponent
   ],
   exports: [
     HeaderComponent,
@@ -41,7 +45,9 @@ import { RegisterComponent } from './register/register.component';
     PlayerBoxComponent,
     FooterComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AdminPanelComponent,
+    UserPanelComponent
   ]
 })
 export class UiModule { }

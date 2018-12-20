@@ -7,12 +7,12 @@ import {
 } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
-import { AuthService } from '../authentication/auth.service';
+import { LocalAuthService } from '../authentication/localauth.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
 
-  constructor(public auth: AuthService) {}
+  constructor(public auth: LocalAuthService) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let headers = {};

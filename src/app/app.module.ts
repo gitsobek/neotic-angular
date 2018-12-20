@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { MaterialModule } from './material.module';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
-
+import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider } from "angular-6-social-login";
 import { UiModule } from './ui/ui.module';
 import { AppComponent } from './app.component';
 import { NeoticService } from './core/http/neotic.service';
@@ -16,15 +16,27 @@ import { AudioService } from './core/services/audio.service';
 import { SongsService } from './core/services/songs.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthGuardService } from './core/guards/auth-guard.service';
-import { AuthService } from './core/authentication/auth.service';
+import { LocalAuthService } from './core/authentication/localauth.service';
 import { TokenInterceptor } from './core/interceptors/token.interceptor';
 
+export function getAuthServiceConfigs() {
+  let config = new AuthServiceConfig(
+    [
+      {
+        id: GoogleLoginProvider.PROVIDER_ID,
+        provider: new GoogleLoginProvider("352511158269-lj7ciul6sc40dl1vrqk5cctt8j4bu88n.apps.googleusercontent.com")
+      }
+    ]
+  );
+  return config;
+}
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
+    SocialLoginModule,
     AppRoutingModule,
     BrowserModule,
     HttpModule,
@@ -44,7 +56,11 @@ import { TokenInterceptor } from './core/interceptors/token.interceptor';
       useClass: TokenInterceptor,
       multi: true
     },
-    AuthService,
+    {
+      provide: AuthServiceConfig,
+      useFactory: getAuthServiceConfigs
+    },
+    LocalAuthService,
     AudioService,
     NeoticService,
     SongsService,
@@ -52,4 +68,5 @@ import { TokenInterceptor } from './core/interceptors/token.interceptor';
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

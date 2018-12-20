@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
-import { TokenPayload, AuthService } from 'src/app/core/authentication/auth.service';
+import { TokenPayload, LocalAuthService } from 'src/app/core/authentication/localauth.service';
 import { Router } from '@angular/router';
 import { NotificationsService } from 'angular2-notifications';
 
@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private auth: AuthService,
+    private auth: LocalAuthService,
     private router: Router,
     private _notifService: NotificationsService) { }
 

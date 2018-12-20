@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from './core/authentication/auth.service';
+import { LocalAuthService } from './core/authentication/localauth.service';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +18,7 @@ export class AppComponent {
     lastOnBottom: false
   }
 
-  constructor(authService: AuthService) {
+  constructor(authService: LocalAuthService) {
     authService.getMyProfile();
   }
 }

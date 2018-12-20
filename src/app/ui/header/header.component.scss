@@ -33,6 +33,22 @@
     }
   }
 
+  .nav-user {
+    color: #D3D3D3;
+    display: inline;
+    margin-left: 5px;
+
+    &:hover {
+      color: lighten(#D3D3D3, 10%);
+    }
+  }
+
+  .nav-img-circle {
+    max-width: 30px;
+    max-height: 30px;
+    border-radius: 10px;
+  }
+
   .nav-transition {
     transition: color 1s;
   }

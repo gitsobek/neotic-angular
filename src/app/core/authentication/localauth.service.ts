@@ -1,17 +1,19 @@
 import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Observable, ReplaySubject, Subject } from 'rxjs';
+import { Observable, ReplaySubject, Subject, BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
 import { NotificationsService } from 'angular2-notifications';
 
-export interface UserDetails{
+export interface UserDetails {
   _id: string,
   email: string,
   user: string,
+  googleId?: string,
   exp: number,
-  iat: number
+  iat: number,
+  role: string
 }
 
 interface TokenResponse {
@@ -25,11 +27,11 @@ export interface TokenPayload {
 }
 
 @Injectable()
-export class AuthService {
+export class LocalAuthService {
   private token: string;
   private apiUrl: string = environment.apiUrl;
 
-  private currentUser = new ReplaySubject<UserDetails>();
+  private currentUser = new ReplaySubject<UserDetails>(null);
   public user = this.currentUser.asObservable();
 
   constructor(
@@ -42,7 +44,9 @@ export class AuthService {
     const token = this.getToken();
     if(token) {
       this.http.get(this.apiUrl + 'auth/me')
-      .subscribe((data: UserDetails) => this.currentUser.next(data))
+        .subscribe((data: UserDetails) => this.currentUser.next(data))
+    } else {
+      this.currentUser.next(null);
     }
   }
 
@@ -110,6 +114,19 @@ export class AuthService {
       console.log(data.user)
       this.currentUser.next(data.user)
     }));
+  }
+
+  public sendDataFromGoogleToApi(user) {
+    return this.http.post(this.apiUrl + 'auth/google', { data: user })
+    .pipe(
+      map((result1) => {
+        this.currentUser.next(result1['user'])
+        if(result1['token']) {
+          this.saveToken(result1['token']);
+        }
+        return result1;
+      })
+    ).subscribe();
   }
 
   public profile(): Observable<any> {

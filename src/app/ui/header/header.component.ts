@@ -3,7 +3,7 @@ import { DeviceDetectorService } from 'ngx-device-detector';
 import { ScrollToService, ScrollToConfigOptions } from '@nicky-lenaers/ngx-scroll-to';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { AuthService } from 'src/app/core/authentication/auth.service';
+import { LocalAuthService } from 'src/app/core/authentication/localauth.service';
 
 @Component({
   selector: 'app-header',
@@ -31,7 +31,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private _scrollToService: ScrollToService,
     private route: ActivatedRoute,
     private router: Router,
-    public authService: AuthService
+    public authService: LocalAuthService
     ) {
       this.checkDeviceType();
    }
