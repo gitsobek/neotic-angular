@@ -1,0 +1,102 @@
+<div class="container">
+    <div class="row align-items-start">
+      <div class="col">
+      </div>
+      <div class="col-sm-12">
+        <div class="container-fluid padding">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="main-box no-header clearfix">
+                      <h2 class="header-list">Lista użytkowników</h2>
+                      <mat-form-field class="search-bar">
+                          <input matInput placeholder="Podaj nazwę" #searchInput autocomplete="off">
+                      </mat-form-field>
+                      <div class="header-sort">
+                      Sortuj po:
+                      <mat-button-toggle-group (change)="onValChange($event.value)" #group="matButtonToggleGroup" name="fontStyle" aria-label="Font Style">
+                          <mat-button-toggle value="name">Nazwa</mat-button-toggle>
+                          <mat-button-toggle value="createdAt">Data</mat-button-toggle>
+                          <mat-button-toggle value="role">Rola</mat-button-toggle>
+                          <mat-button-toggle value="rank">Status</mat-button-toggle>
+                          <mat-button-toggle value="email">Email</mat-button-toggle>
+                          <mat-button-toggle value="googleId">Konto Google</mat-button-toggle>
+                          <mat-button-toggle value="warns">Ilość ostrzeżeń</mat-button-toggle>
+                      </mat-button-toggle-group>
+                    </div>
+                        <div class="main-box-body clearfix">
+                            <div class="table-responsive">
+                                <table class="table user-list" *ngIf="(users$ | async) as users">
+                                    <thead>
+                                      <tr>
+                                        <th><span>Nazwa użytkownika</span></th>
+                                        <th><span>Data stworzenia</span></th>
+                                        <th class="text-center"><span>Status</span></th>
+                                        <th><span>Email</span></th>
+                                        <th><span>Konto Google?</span></th>
+                                        <th class="text-center"><span>Ostrzeżenia</span></th>
+                                        <th>&nbsp;</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let user of users">
+                                            <td>
+                                              <img src="{{user.avatarUrl}}" alt="">
+                                              <a routerLink="/profile/{{user._id}}" routerLinkActive="active" class="user-link">{{ user.name }}</a>
+                                              <span class="user-subhead">{{ user.role }}</span>
+                                            </td>
+                                            <td>{{ user.createdAt | date: 'dd/MM/yyyy'}}</td>
+                                            <td [ngSwitch]="user.rank" class="text-center">
+                                              <span *ngSwitchCase="'Zwykły słuchacz'" class="label label-default rank" style="background-color: #999">{{ user.rank }}</span>
+                                              <span *ngSwitchCase="'Producent'" class="label label-default rank" style="background-color: #ffa500">{{ user.rank }}</span>
+                                              <span *ngSwitchCase="'Artysta'" class="label label-default rank" style="background-color: #008080">{{ user.rank }}</span>
+                                            </td>
+                                            <td>
+                                              <p>{{ user.email }}</p>
+                                            </td>
+                                            <td>
+                                              <span>{{ user.googleId | isGoogleAccount }}</span>
+                                            </td>
+                                            <td [ngSwitch]="user.role" class="text-center">
+                                              <span *ngSwitchCase="'admin'">-</span>
+                                              <span *ngSwitchDefault>{{ user.warns | getWarnsQuantity }}</span>
+                                            </td>
+                                            <td [ngSwitch]="user.role">
+                                                <a routerLink="/profile/{{user._id}}" class="table-link">
+                                                    <span class="fa-stack">
+                                                      <i class="fa fa-square fa-stack-2x"></i>
+                                                      <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
+                                                    </span>
+                                                </a>
+                                                <a (click)="changeUserRank(user)" class="table-link">
+                                                    <span class="fa-stack">
+                                                      <i class="fa fa-square fa-stack-2x"></i>
+                                                      <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                                                    </span>
+                                                </a>
+                                                <a *ngSwitchCase="'user'" (click)="addWarning(user)" class="table-link danger">
+                                                    <span class="fa-stack">
+                                                      <i class="fa fa-square fa-stack-2x"></i>
+                                                      <i class="fa fa-warning fa-stack-1x fa-inverse"></i>
+                                                    </span>
+                                                </a>
+                                                <a *ngSwitchCase="'banned'" (click)="unbanUser(user)" class="table-link danger">
+                                                  <span class="fa-stack">
+                                                    <i class="fa fa-square fa-stack-2x"></i>
+                                                    <i class="fa fa-rotate-right fa-stack-1x fa-inverse"></i>
+                                                  </span>
+                                              </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="col">
+      </div>
+  </div>
+</div>

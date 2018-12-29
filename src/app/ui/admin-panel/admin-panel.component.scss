@@ -1,0 +1,89 @@
+@import "src/assets/scss/imports";
+
+$color-primary-light: #7ed56f;
+$color-primary-dark: #28b485;
+
+.container {
+  margin-top: 50px;
+  box-sizing: border-box;
+}
+
+.col-sm-10 {
+  background-image: url('../../../assets/img/adminpanel.jpeg');
+  background: transparent url("/src/assets/img/pattern.svg") top left/auto repeat;
+  background-size: cover;
+  height: 575px;
+}
+
+.login__logo {
+  text-align: center;
+  margin-bottom: 2vh;
+  margin-top: 30px;
+  color: white;
+
+  p {
+    margin-left: 2vh;
+    font-size: 1.5em;
+    display: inline;
+  }
+}
+
+.features__header {
+  text-align: center;
+  color: white;
+  font-weight: 700;
+  font-size: 35px;
+  margin-top: 20px;
+}
+
+.col-sm-4 {
+  padding-top: 70px;
+}
+
+.features {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+
+  @media (min-width: 700px) and (max-width: 1000px) {
+  }
+
+  @media screen and (max-width: 1000px) {
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+.feature-box {
+  width: 300px;
+  height: 300px;
+  background-image: linear-gradient(to right, #F5E3E6, #D9E4F5);
+  font-size: 1.2rem;
+  padding: 2.5rem;
+  text-align: center;
+  border-radius: 20px;
+  box-shadow: 0 1.5rem 4rem rgba(black, .15);
+  transition: transform .3s;
+  cursor: pointer;
+
+  &__icon {
+      font-size: 3rem;
+      margin-bottom: .5rem;
+      display: inline-block;
+      background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
+      background-clip: text;
+      color: transparent;
+  }
+
+  &:hover {
+      transform: translateY(-1.5rem) scale(1.03);
+  }
+}
+
+.heading-tertiary {
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+

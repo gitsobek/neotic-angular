@@ -1,5 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable, ReplaySubject, Subject, BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -11,6 +11,7 @@ export interface UserDetails {
   email: string,
   user: string,
   googleId?: string,
+  avatarUrl?: string,
   exp: number,
   iat: number,
   role: string
@@ -111,7 +112,7 @@ export class LocalAuthService {
   public login(user: TokenPayload): Observable<any> {
     return this.request('post', 'login', user)
     .pipe(map(data => {
-      console.log(data.user)
+      //console.log(data.user)
       this.currentUser.next(data.user)
     }));
   }
@@ -126,7 +127,18 @@ export class LocalAuthService {
         }
         return result1;
       })
-    ).subscribe();
+    ).subscribe(() => {
+      this.router.navigateByUrl('/');
+      this._notifService.success('Komunikat', 'Zostałeś zalogowany przez Google.')
+    }, (err) => {
+      if(err.status === 401) {
+        this._notifService.error('Komunikat', err.error.message);
+      } else if(err.status === 477) {
+        this._notifService.error('Komunikat', 'Jesteś zbanowy. Powód: ' + err.error.message);
+      } else {
+        this._notifService.error('Komunikat', 'Błąd serwera.');
+      }
+    });
   }
 
   public profile(): Observable<any> {
@@ -134,6 +146,8 @@ export class LocalAuthService {
   }
 
   public logout(): void {
+    const user = this.getUserDetails();
+    this.http.put(this.apiUrl + `users/${user._id}/logout`, { headers: { 'content-type': 'application-json'}}).subscribe();
     this.currentUser.next(null);
     this.token = '';
     window.localStorage.removeItem('token');

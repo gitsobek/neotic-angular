@@ -1,0 +1,75 @@
+<div *ngIf="user" class="container">
+  <div class="row align-items-start">
+    <div class="col">
+    </div>
+    <div class="col-sm-12">
+      <div class="profile">
+        <div class="profile__data">
+          <div [ngSwitch]="user.isOnline" class="profile__online">
+            <span *ngSwitchCase="true"><span class="indicator online"></span>Online</span>
+            <span *ngSwitchCase="false"><span class="indicator offline"></span>Offline</span>
+          </div>
+          <div class="profile__imagebox">
+            <img class="profile__image" src="{{user.avatarUrl}}">
+            <h2 class="profile__name">{{user.name}}</h2>
+            <p class="profile__email">{{user.email}}</p>
+            <div class="profile__groups">
+              <div [ngSwitch]="user.role" class="text-center">
+                <span *ngSwitchCase="'user'" class="label label-default rank" style="background-color: #999">Użytkownik</span>
+                <span *ngSwitchCase="'admin'" class="label label-default rank" style="background-color: #b60f33">Administrator</span>
+                <span *ngSwitchCase="'banned'" class="label label-default rank" style="background-color: #e40000; text-decoration: line-through;">Zbanowany</span>
+              </div>
+              <div [ngSwitch]="user.rank" class="text-center">
+                <span *ngSwitchCase="'Zwykły słuchacz'" class="label label-default rank" style="background-color: #999">{{ user.rank }}</span>
+                <span *ngSwitchCase="'Producent'" class="label label-default rank" style="background-color: #ffa500">{{ user.rank }}</span>
+                <span *ngSwitchCase="'Artysta'" class="label label-default rank" style="background-color: #008080">{{ user.rank }}</span>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">Informacje <i class="fa fa-link fa-1x"></i></div>
+            <div class="card-body">
+              <ul class="activity-list">
+                <li class="activity-list--item">Ilość polubień: <b>0</b></li>
+                <li class="activity-list--item">Ilość uploadów: <b>0</b></li>
+                <li class="activity-list--item">Ilość utworów w playlist: <b>0</b></li>
+                <li class="activity-list--itemdate">Ostatnio zalogowany: <p class="c"><b>{{user.lastTimeOnline}}</b></p></li>
+              </ul>
+            </div>
+          </div>
+          <ng-container *ngIf="whoami; else auth">
+            <div *ngIf="whoami.role=='admin'" class="card">
+              <div class="card-header">Ostrzeżenia <i class="fa fa-warning fa-1x"></i></div>
+                <div class="card-body">
+                  <p *ngIf="warns.length == 0">Brak ostrzeżen.</p>
+                  <ul *ngFor="let warn of warns; index as i"  class="activity-list">
+                    <li class="activity-list--message"><p class="b">{{i+1}}: ({{warn.receivedWhen | date: 'dd/MM/yyyy HH:mm'}})</p> <p class="c">{{ warn.message }}</p></li>
+                  </ul>
+                </div>
+            </div>
+            <div *ngIf="whoami.role=='admin' && user.role=='banned'" class="card">
+              <div class="card-header">Powód banicji <i class="fa fa-ban fa-1x"></i></div>
+              <div class="card-body">{{user.banReason}}</div>
+            </div>
+          </ng-container>
+        </div>
+        <mat-tab-group class="profile__musiclist" dynamicHeight>
+            <mat-tab label="Polubione">
+              <div class="example-large-box mat-elevation-z4">
+              </div>
+            </mat-tab>
+            <mat-tab label="Uploadowane">
+              <div class="example-large-box mat-elevation-z4">
+              </div>
+            </mat-tab>
+            <mat-tab label="Playlista">
+                <div class="example-large-box mat-elevation-z4">
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+      </div>
+    </div>
+    <div class="col">
+    </div>
+  </div>
+</div>

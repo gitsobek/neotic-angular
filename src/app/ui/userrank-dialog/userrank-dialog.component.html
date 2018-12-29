@@ -1,0 +1,34 @@
+<div style="padding: 20px;">
+  Nazwa użytkownika: <h2 mat-dialog-title>{{user.name}}</h2>
+  <mat-dialog-content class="select-rank" [formGroup]="form">
+    <mat-form-field>
+
+      <mat-select placeholder="Wybierz status użytkownika"
+              formControlName="rank">
+
+        <mat-option value="Zwykły słuchacz">
+          Zwykły słuchacz</mat-option>
+        <mat-option value="Producent">
+          Producent</mat-option>
+        <mat-option value="Artysta">
+          Artysta</mat-option>
+      </mat-select>
+
+    </mat-form-field>
+
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <div class="button-row">
+      <button mat-stroked-button
+          (click)="close()">
+        Zamknij
+      </button>
+
+      <button mat-raised-button color="primary" #saveButton (click)="save()">
+        Zapisz
+      </button>
+    </div>
+  </mat-dialog-actions>
+</div>
+

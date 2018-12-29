@@ -1,0 +1,29 @@
+<div style="padding: 15px;">
+  Nazwa użytkownika: <h2 mat-dialog-title>{{user.name}}</h2>
+  <mat-dialog-content [formGroup]="form">
+    <div class="example-container">
+      <mat-radio-group class="radio-group-warn" formControlName="type">
+        <mat-radio-button class="radio-button-warn" value="warn">Ostrzeżenie</mat-radio-button>
+        <mat-radio-button class="radio-button-warn" value="ban">Banicja</mat-radio-button>
+      </mat-radio-group>
+
+      <mat-form-field class="radio-group-text">
+        <textarea matInput placeholder="Powód"
+                formControlName="message">
+        </textarea>
+      </mat-form-field>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <div class="button-row">
+      <button mat-stroked-button
+              (click)="close()">
+        Zamknij
+      </button>
+      <button mat-raised-button color="primary" #saveButton (click)="save()">
+        Zapisz
+      </button>
+    </div>
+  </mat-dialog-actions>
+</div>

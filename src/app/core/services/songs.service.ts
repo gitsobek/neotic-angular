@@ -43,7 +43,7 @@ export class SongsService {
 
   }
 
-  filterByGenres(keyword: string) : string {
+  filterByGenres(keyword: string): string {
     return 'http://localhost:3000/songs?genre=' + keyword;
   }
 }

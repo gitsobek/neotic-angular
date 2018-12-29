@@ -14,7 +14,12 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { UserPanelComponent } from './user-panel/user-panel.component';
-
+import { UserinfoComponent } from './userinfo/userinfo.component';
+import { GoogleAccountPipe } from '../core/pipes/googleAccount';
+import { WarnsQuantity } from '../core/pipes/warns';
+import { UserrankDialogComponent } from './userrank-dialog/userrank-dialog.component';
+import { UserProfileDisplayComponent } from './user-profile-display/user-profile-display.component';
+import { UserProfileEditComponent } from './user-profile-edit/user-profile-edit.component';
 
 @NgModule({
   imports: [
@@ -25,6 +30,8 @@ import { UserPanelComponent } from './user-panel/user-panel.component';
     MaterialModule
   ],
   declarations: [
+    GoogleAccountPipe,
+    WarnsQuantity,
     HeaderComponent,
     ImagesliderComponent,
     HomeinfoComponent,
@@ -35,7 +42,10 @@ import { UserPanelComponent } from './user-panel/user-panel.component';
     HomeComponent,
     RegisterComponent,
     AdminPanelComponent,
-    UserPanelComponent
+    UserPanelComponent,
+    UserinfoComponent,
+    UserProfileDisplayComponent,
+    UserProfileEditComponent
   ],
   exports: [
     HeaderComponent,
@@ -47,7 +57,10 @@ import { UserPanelComponent } from './user-panel/user-panel.component';
     LoginComponent,
     RegisterComponent,
     AdminPanelComponent,
-    UserPanelComponent
+    UserPanelComponent,
+    UserinfoComponent,
+    UserProfileDisplayComponent,
+    UserProfileEditComponent
   ]
 })
 export class UiModule { }

@@ -18,6 +18,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AuthGuardService } from './core/guards/auth-guard.service';
 import { LocalAuthService } from './core/authentication/localauth.service';
 import { TokenInterceptor } from './core/interceptors/token.interceptor';
+import { UserrankDialogComponent } from './ui/userrank-dialog/userrank-dialog.component';
+import { UserwarnDialogComponent } from './ui/userwarn-dialog/userwarn-dialog.component';
+import { UsersService } from './core/services/users.service';
+import { RouteGuardService } from './core/guards/route-guard.service';
 
 export function getAuthServiceConfigs() {
   let config = new AuthServiceConfig(
@@ -33,7 +37,9 @@ export function getAuthServiceConfigs() {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    UserrankDialogComponent,
+    UserwarnDialogComponent
   ],
   imports: [
     SocialLoginModule,
@@ -64,9 +70,15 @@ export function getAuthServiceConfigs() {
     AudioService,
     NeoticService,
     SongsService,
-    AuthGuardService
+    UsersService,
+    AuthGuardService,
+    RouteGuardService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    UserrankDialogComponent,
+    UserwarnDialogComponent
+  ]
 })
 
 export class AppModule { }

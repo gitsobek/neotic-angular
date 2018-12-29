@@ -17,10 +17,11 @@
         <!-- displays navbar for logged user -->
         <ng-container *ngIf="(authService.user | async) as user; else auth">
           <li class="nav-item">
-            <a [routerLink]="['/']" class="nav-link"><img src="http://placehold.it/30x30" class="nav-img-circle"><p class="nav-user">{{ user.name }}</p></a>
+            <a routerLink="/myprofile/{{user._id}}" routerLinkActive="active" class="nav-link"><img src="{{user.avatarUrl}}" class="nav-img-circle"><p class="nav-user">{{ user.name }}</p></a>
           </li>
-          <li class="nav-item">
-            <a [routerLink]="['/']" class="nav-link">Panel administratora</a>
+          <li [ngSwitch]="user.role" class="nav-item">
+            <a *ngSwitchCase="'admin'" [routerLink]="['/admin']" class="nav-link">Panel administratora</a>
+            <a *ngSwitchCase="'user'" [routerLink]="['/user']" class="nav-link">Panel użytkownika</a>
           </li>
           <li class="nav-item">
               <a (click)="authService.logout()" class="nav-link">Wyloguj</a>

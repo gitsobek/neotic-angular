@@ -1,5 +1,9 @@
 @import "imports.scss";
 
+*:focus {
+  outline: 0 !important;
+}
+
 html, body {
   font-family: "Titillium Web", sans-serif;
   background-color:#484d54;
@@ -19,4 +23,12 @@ html, body {
     border-bottom-style: none;
     box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
   }
+}
+
+.rank {
+  border: solid 1px black;
+  border-radius: 25px;
+  padding: 5px 10px;
+  color: white;
+  box-shadow: 0 1rem 1.5rem rgba(black, .2);
 }

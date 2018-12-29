@@ -44,8 +44,9 @@ export class LoginComponent implements OnInit {
     }, (err) => {
       if(err.status === 401) {
         this._notifService.error('Komunikat', err.error.message);
-      }
-      else {
+      } else if(err.status === 477) {
+        this._notifService.error('Komunikat', 'Jesteś zbanowy. Powód: ' + err.error.message);
+      } else {
         this._notifService.error('Komunikat', 'Błąd serwera.');
       }
     });
