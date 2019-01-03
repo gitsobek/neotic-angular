@@ -20,6 +20,7 @@ import { WarnsQuantity } from '../core/pipes/warns';
 import { UserrankDialogComponent } from './userrank-dialog/userrank-dialog.component';
 import { UserProfileDisplayComponent } from './user-profile-display/user-profile-display.component';
 import { UserProfileEditComponent } from './user-profile-edit/user-profile-edit.component';
+import { AddtrackComponent } from './addtrack/addtrack.component';
 
 @NgModule({
   imports: [
@@ -45,7 +46,8 @@ import { UserProfileEditComponent } from './user-profile-edit/user-profile-edit.
     UserPanelComponent,
     UserinfoComponent,
     UserProfileDisplayComponent,
-    UserProfileEditComponent
+    UserProfileEditComponent,
+    AddtrackComponent
   ],
   exports: [
     HeaderComponent,
@@ -60,7 +62,8 @@ import { UserProfileEditComponent } from './user-profile-edit/user-profile-edit.
     UserPanelComponent,
     UserinfoComponent,
     UserProfileDisplayComponent,
-    UserProfileEditComponent
+    UserProfileEditComponent,
+    AddtrackComponent
   ]
 })
 export class UiModule { }

@@ -10,6 +10,9 @@ import { map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NotificationsService } from 'angular2-notifications';
+import { matchOtherValidator } from 'src/app/core/utils/confirm-password';
+import { LocalAuthService } from 'src/app/core/authentication/localauth.service';
+import { DataService } from 'src/app/core/services/data.service';
 
 @Component({
   selector: 'app-user-profile-edit',
@@ -20,7 +23,9 @@ export class UserProfileEditComponent implements OnInit {
 
   @Input() user: User;
   subscription$: Subscription;
+  subForId$: Subscription;
   selectedFile: File;
+  id: String
 
   public warns: Array<String>;
   private submitted: boolean = false;
@@ -30,16 +35,18 @@ export class UserProfileEditComponent implements OnInit {
   passwordForm = this.fb.group({
     passwordAct: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
     passwordNew: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
-    passwordConfirm: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]]
+    passwordConfirm: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20), matchOtherValidator('passwordNew')]]
   });
 
   constructor(
     private route: ActivatedRoute,
     private _userService: UsersService,
+    private _authService: LocalAuthService,
     private location: Location,
     private http: HttpClient,
     private fb: FormBuilder,
-    private _notifService: NotificationsService
+    private _notifService: NotificationsService,
+    private data: DataService
   ) { }
 
   public get f() {
@@ -51,8 +58,9 @@ export class UserProfileEditComponent implements OnInit {
   }
 
   getUser(): Observable<User> {
-    const id = this.route.snapshot.paramMap.get('id');
-    return createHttpObservable(this.apiUrl + `users/${id}`)
+    // const id = this.route.snapshot.paramMap.get('id');
+    this.subForId$ = this.data.currentId.subscribe(res => this.id = res)
+    return createHttpObservable(this.apiUrl + `users/${this.id}`)
       .pipe(
         map(res => res['data'])
       )
@@ -110,7 +118,7 @@ export class UserProfileEditComponent implements OnInit {
       return;
     }
 
-    console.log(this.passwordForm.value);
+    this._authService.changePassword(this.user._id, this.passwordForm.value);
   }
 
   ngOnDestroy() {

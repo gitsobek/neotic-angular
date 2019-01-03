@@ -1,0 +1,73 @@
+<div *ngIf="user" class="container">
+  <div class="row align-items-start">
+    <div class="col">
+    </div>
+    <div class="col-sm-12">
+      <div class="adder">
+        <div class="adder__data">
+          <div class="adder__imagebox">
+          <img [src]="url" [width]="widthOfImage" [height]="heightOfImage" class="adder__image">
+            <div class="adder__upload">
+              <input style="display: none" type="file" (change)="onFileSelected($event)" #fileInput />
+              <button class="btn btn-default adder__setimage" (click)="fileInput.click()">Wybierz zdjęcie</button>
+              <!-- <button class="btn btn-primary adder__uploadbtn" type="submit" (click)="onUpload()">Zmień</button> -->
+              <p *ngIf="selectedFile">Wybrane zdjęcie: {{ selectedFile.name }}</p>
+            </div>
+            <div class="login__or">
+              <hr class="login__bar">
+              <span>INFO</span>
+              <hr class="login__bar">
+            </div>
+            </div>
+          <form class="adder__form" [formGroup]="uploadForm" (ngSubmit)="onSubmit()" autocomplete="on">
+            <div class="form-group">
+              <label>Tytuł</label>
+              <input type="text" formControlName="title" class="adder__input form-control" [ngClass]="{ 'is-invalid': submitted && f.title.errors }" placeholder="Podaj tytuł utworu..."/>
+              <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                <div *ngIf="f.title.errors.required">Podaj tytuł!</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Nazwa artysty</label>
+              <input type="text" formControlName="artist" class="adder__input form-control" [ngClass]="{ 'is-invalid': submitted && f.artist.errors }" placeholder="Podaj nazwę artysty / DJ..."/>
+              <div *ngIf="submitted && f.artist.errors" class="invalid-feedback">
+                <div *ngIf="f.artist.errors.required">Podaj nazwę artysty!</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Opis</label>
+              <input type="text" formControlName="description" class="adder__input form-control" [ngClass]="{ 'is-invalid': submitted && f.description.errors }" placeholder="Krótki opis utworu"/>
+              <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                <div *ngIf="f.description.errors.required">Podaj opis!</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Gatunek</label>
+              <select class="adder__input adder__select form-control" formControlName="genre">
+                <option value="" disabled selected hidden>Wybierz gatunek Twojego utworu...</option>
+                <option value="pop">Pop / Hity na czasie</option>
+                <option value="rock">Rock / Post-Rock / Alternatywny / Metal</option>
+                <option value="edm">House / Techno</option>
+                <option value="trance">Trance / Uplifting / Progresywny</option>
+                <option value="chill">Chillstep / Relaksująca / Ambient</option>
+                <option value="classic">Klasyczna / Opera / Muzyka filmowa</option>
+                <option value="funk">Funk / Jazz</option>
+              </select>
+            </div>
+            <div class="songupload">
+              <input style="display: none" type="file" (change)="onFileSelected2($event)" #fileInput2 />
+              <a class="n-button add" (click)="fileInput2.click()">Dodaj</a>
+              <a class="n-button-delete" (click)="removeSong()"><i class="fa fa-trash" aria-hidden="true"></i></a>
+              <p *ngIf="selectedSong">Wybrany utwór: {{ selectedSong.name }}</p>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-dark">Zapisz</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      </div>
+    <div class="col">
+    </div>
+  </div>
+</div>

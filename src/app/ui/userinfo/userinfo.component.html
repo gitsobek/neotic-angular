@@ -40,7 +40,7 @@
                                     <tbody>
                                         <tr *ngFor="let user of users">
                                             <td>
-                                              <img src="{{user.avatarUrl}}" alt="">
+                                              <img class="user-image" src="{{user.avatarUrl}}" alt="">
                                               <a routerLink="/profile/{{user._id}}" routerLinkActive="active" class="user-link">{{ user.name }}</a>
                                               <span class="user-subhead">{{ user.role }}</span>
                                             </td>

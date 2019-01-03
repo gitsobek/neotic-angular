@@ -44,9 +44,11 @@
   }
 
   .nav-img-circle {
-    max-width: 30px;
-    max-height: 30px;
-    border-radius: 10px;
+    width: 30px;
+    height: 30px;
+    background-size: cover;
+    background-position: top center;
+    border-radius: 50%;
   }
 
   .nav-transition {

@@ -2,8 +2,8 @@ import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, Input } from '
 import { User } from 'src/app/core/models/User';
 import { createHttpObservable } from 'src/app/core/utils/data'
 import { environment } from 'src/environments/environment';
-import { map, startWith, debounceTime, distinctUntilChanged, switchMap, tap, share, shareReplay } from 'rxjs/operators';
-import { Observable, fromEvent } from 'rxjs';
+import { map, startWith, debounceTime, distinctUntilChanged, switchMap, tap, share, shareReplay, publishLast, refCount, takeUntil } from 'rxjs/operators';
+import { Observable, fromEvent, Subject } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { UserrankDialogComponent } from '../userrank-dialog/userrank-dialog.component';
@@ -23,6 +23,7 @@ export class UserinfoComponent implements OnInit, AfterViewInit {
   users: User[];
 
   users$: Observable<User[]>;
+  destroy$: Subject<boolean> = new Subject<boolean>();
 
   @ViewChild('searchInput') input: ElementRef;
 
@@ -55,8 +56,8 @@ export class UserinfoComponent implements OnInit, AfterViewInit {
       )
   }
 
-  onValChange(value): Observable<User[]> {
-    return this.users$ = createHttpObservable(this.apiUrl + `users?sort_by=`+value+`&order_by=${value==='warns' ? 'desc' : 'asc'}`)
+  onValChange(value) {
+    this.users$ = createHttpObservable(this.apiUrl + `users?sort_by=`+value+`&order_by=${value==='warns' ? 'desc' : 'asc'}`)
       .pipe(
         map(res => res["data"])
       )

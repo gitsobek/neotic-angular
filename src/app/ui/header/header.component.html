@@ -17,7 +17,7 @@
         <!-- displays navbar for logged user -->
         <ng-container *ngIf="(authService.user | async) as user; else auth">
           <li class="nav-item">
-            <a routerLink="/myprofile/{{user._id}}" routerLinkActive="active" class="nav-link"><img src="{{user.avatarUrl}}" class="nav-img-circle"><p class="nav-user">{{ user.name }}</p></a>
+            <a (click)="sendInfo(user._id)" routerLink="/myprofile" routerLinkActive="active" class="nav-link"><img src="{{user.avatarUrl}}" class="nav-img-circle"><p class="nav-user">{{ user.name }}</p></a>
           </li>
           <li [ngSwitch]="user.role" class="nav-item">
             <a *ngSwitchCase="'admin'" [routerLink]="['/admin']" class="nav-link">Panel administratora</a>

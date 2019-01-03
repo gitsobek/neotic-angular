@@ -1,0 +1,279 @@
+@import "src/assets/scss/imports";
+
+.container {
+  margin-top: 50px;
+  box-sizing: border-box;
+}
+
+p.c {
+  word-break: break-all;
+}
+
+.adder {
+  padding: 50px 75px;
+  background-color: #af8c9d;
+  background-image: linear-gradient(315deg, #af8c9d 0%, #8cacac 74%);
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+
+  &__data {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  &__imagebox {
+    width: 100%;
+  }
+
+  &__image {
+    display: block;
+    margin: 0 auto;
+    // width: 500px;
+    // height: 300px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+    border-radius: 10px;
+    border: 5px solid #eee;
+    box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  &__name {
+    margin-top: 5px;
+    margin-bottom: 0;
+  }
+
+  &__groups {
+    padding: 10px 0;
+  }
+
+  &__online {
+    padding-bottom: 5px;
+  }
+
+  &__musiclist {
+    margin-left: auto;
+    margin-right: 25px;
+  }
+
+  &__upload {
+    margin-top: 10px;
+  }
+
+  &__uploadbtn {
+    margin: 0;
+  }
+
+  &__setimage {
+    margin-right: 5px;
+  }
+
+  &__form {
+    margin-top: 25px;
+  }
+
+  &__input {
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 15px;
+  }
+
+  &__select {
+    background-color: lightgray;
+    border-color: gray;
+  }
+
+}
+
+option:not(:checked) {
+  background-color: white !important;
+  color:#000 !important;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.indicator.online {
+  background: #28B62C;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  animation: pulse-animation 2s infinite linear;
+}
+
+@keyframes pulse-animation {
+  0% { transform: scale(1); }
+  25% { transform: scale(1); }
+  50% { transform: scale(1.2) }
+  75% { transform: scale(1); }
+  100% { transform: scale(1); }
+}
+
+.indicator {
+  margin-right: 5px;
+}
+
+.indicator.offline {
+  background: #FF4136;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+}
+
+.card-body {
+  text-align: left;
+  padding: 12px;
+}
+
+.label-default {
+  margin: 3px 0;
+}
+
+.profile__groups {
+  padding: 10px 0;
+}
+
+.card {
+  margin-top: 10px;
+}
+
+.label {
+  display: inline-block;
+  border-radius: 3px;
+  font-size: 0.875em;
+  font-weight: 600;
+}
+
+.example-small-box, .example-large-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 16px;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.mat-tab-labels {
+  border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
+}
+
+.mat-tab-labels, .mat-tab-label, .mat-tab-link {
+  color: black;
+  font-size: 16px;
+  //background-color: rgba(0, 0, 0, 0.03)
+}
+
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar{
+  background: lightgray;
+  height: 5px;
+}
+
+.example-small-box {
+  height: 100px;
+  width: 100px;
+}
+
+.example-large-box {
+  padding: 15px;
+  height: auto;
+  width: 95%;
+}
+
+.login {
+  &__or {
+    width: 100%;
+    margin-top: 35px;
+  }
+
+  &__or {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    span {
+      color: #2C251E;
+      padding: 0 0.8rem;
+    }
+  }
+
+  &__or &__bar {
+    flex: auto;
+    border: none;
+    height: 1px;
+    background: #2C251E;
+  }
+}
+
+.n-button {
+  display: inline-block;
+  white-space: nowrap;
+  background-color: #ccc;
+  background-image: linear-gradient(to bottom, #eee, #ccc);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#eeeeee', EndColorStr='#cccccc');
+  border: 1px solid #777;
+  padding: 0 1.5em;
+  margin: 0.5em;
+  font: bold 1em/2em Arial, Helvetica;
+  text-decoration: none;
+  color: #333;
+  text-shadow: 0 1px 0 rgba(255,255,255,.8);
+  border-radius: .2em;
+  box-shadow: 0 0 1px 1px rgba(255,255,255,.8) inset, 0 1px 0 rgba(0,0,0,.3);
+}
+
+.n-button:hover {
+  cursor: pointer;
+  background-color: #ddd;
+  background-image: linear-gradient(to bottom, #fafafa, #ddd);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#fafafa', EndColorStr='#dddddd');
+}
+
+.n-button:active {
+  box-shadow: 0 0 4px 2px rgba(0,0,0,.3) inset;
+  position: relative;
+  top: 1px;
+}
+
+.n-button:focus {
+  outline: 0;
+  background: #fafafa;
+}
+
+.n-button:before {
+  background: #ccc;
+  background: rgba(0,0,0,.1);
+  float: left;
+  text-align: center;
+  font-size: 1.5em;
+  margin: 0 1em 0 -1em;
+  padding: 0 .2em;
+  box-shadow: 1px 0 0 rgba(0,0,0,.5), 2px 0 0 rgba(255,255,255,.5);
+  border-radius: .15em 0 0 .15em;
+  pointer-events: none;
+}
+
+.add:before {
+  content: "\271A";
+}
+
+.songupload {
+  margin-bottom: 8px;
+  justify-content: flex-start;
+}
+
+.n-button-delete {
+  display: inline-block;
+  font-size: 24px;
+  align-content: center;
+  padding-top: 2px;
+}
+
+.n-button-delete:hover {
+  cursor: pointer;
+}

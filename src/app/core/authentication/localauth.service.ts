@@ -117,6 +117,19 @@ export class LocalAuthService {
     }));
   }
 
+  public changePassword(id, data) {
+    return this.http.post(this.apiUrl + `auth/changepassword/${id}`, data)
+      .subscribe((res) => {
+        this.logoutAfterPasswordChange();
+      }, (err) => {
+        if(err.status === 401) {
+          this._notifService.error('Komunikat', err.error.message);
+        } else {
+          this._notifService.error('Komunikat', 'Błąd serwera.');
+        }
+      })
+  }
+
   public sendDataFromGoogleToApi(user) {
     return this.http.post(this.apiUrl + 'auth/google', { data: user })
     .pipe(
@@ -151,8 +164,19 @@ export class LocalAuthService {
     this.currentUser.next(null);
     this.token = '';
     window.localStorage.removeItem('token');
+    window.localStorage.removeItem('myData');
     this.router.navigateByUrl('/');
     this._notifService.success('Komunikat', 'Zostałeś wylogowany.')
+  }
+
+  public logoutAfterPasswordChange(): void {
+    const user = this.getUserDetails();
+    this.http.put(this.apiUrl + `users/${user._id}/logout`, { headers: { 'content-type': 'application-json'}}).subscribe();
+    this.currentUser.next(null);
+    this.token = '';
+    window.localStorage.removeItem('token');
+    this.router.navigateByUrl('/');
+    this._notifService.success('Komunikat', 'Hasło zostało zmienione.')
   }
 
 }

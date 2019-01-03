@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { LocalAuthService } from './core/authentication/localauth.service';
+import { RoutingState } from './core/services/routing.service';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,11 @@ export class AppComponent {
     lastOnBottom: false
   }
 
-  constructor(authService: LocalAuthService) {
+  constructor(
+    authService: LocalAuthService,
+    routingState: RoutingState
+  ) {
     authService.getMyProfile();
+    routingState.loadRouting();
   }
 }

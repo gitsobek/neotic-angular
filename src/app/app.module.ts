@@ -22,6 +22,8 @@ import { UserrankDialogComponent } from './ui/userrank-dialog/userrank-dialog.co
 import { UserwarnDialogComponent } from './ui/userwarn-dialog/userwarn-dialog.component';
 import { UsersService } from './core/services/users.service';
 import { RouteGuardService } from './core/guards/route-guard.service';
+import { DataService } from './core/services/data.service';
+import { RoutingState } from './core/services/routing.service';
 
 export function getAuthServiceConfigs() {
   let config = new AuthServiceConfig(
@@ -71,6 +73,8 @@ export function getAuthServiceConfigs() {
     NeoticService,
     SongsService,
     UsersService,
+    DataService,
+    RoutingState,
     AuthGuardService,
     RouteGuardService
   ],
