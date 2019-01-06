@@ -21,6 +21,8 @@ import { UserrankDialogComponent } from './userrank-dialog/userrank-dialog.compo
 import { UserProfileDisplayComponent } from './user-profile-display/user-profile-display.component';
 import { UserProfileEditComponent } from './user-profile-edit/user-profile-edit.component';
 import { AddtrackComponent } from './addtrack/addtrack.component';
+import { PreferencesListComponent } from './preferences-list/preferences-list.component';
+import { PlayerBoxComplexComponent } from './player-box-complex/player-box-complex.component';
 
 @NgModule({
   imports: [
@@ -38,6 +40,7 @@ import { AddtrackComponent } from './addtrack/addtrack.component';
     HomeinfoComponent,
     MusicdemoComponent,
     PlayerBoxComponent,
+    PlayerBoxComplexComponent,
     FooterComponent,
     LoginComponent,
     HomeComponent,
@@ -47,7 +50,8 @@ import { AddtrackComponent } from './addtrack/addtrack.component';
     UserinfoComponent,
     UserProfileDisplayComponent,
     UserProfileEditComponent,
-    AddtrackComponent
+    AddtrackComponent,
+    PreferencesListComponent
   ],
   exports: [
     HeaderComponent,
@@ -55,6 +59,7 @@ import { AddtrackComponent } from './addtrack/addtrack.component';
     HomeinfoComponent,
     MusicdemoComponent,
     PlayerBoxComponent,
+    PlayerBoxComplexComponent,
     FooterComponent,
     LoginComponent,
     RegisterComponent,
@@ -63,7 +68,8 @@ import { AddtrackComponent } from './addtrack/addtrack.component';
     UserinfoComponent,
     UserProfileDisplayComponent,
     UserProfileEditComponent,
-    AddtrackComponent
+    AddtrackComponent,
+    PreferencesListComponent
   ]
 })
 export class UiModule { }

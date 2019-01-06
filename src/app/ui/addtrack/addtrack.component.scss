@@ -277,3 +277,14 @@ option:not(:checked) {
 .n-button-delete:hover {
   cursor: pointer;
 }
+
+.spinner-info {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+.spinner-circle {
+  margin: 0 auto;
+}

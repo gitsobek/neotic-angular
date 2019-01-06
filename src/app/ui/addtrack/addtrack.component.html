@@ -5,12 +5,12 @@
     <div class="col-sm-12">
       <div class="adder">
         <div class="adder__data">
+          <h2 class="text-center" style="display: inline-block; margin-bottom: 30px;">Wybierz obrazek, plik audio i wypełnij informacje.</h2>
           <div class="adder__imagebox">
           <img [src]="url" [width]="widthOfImage" [height]="heightOfImage" class="adder__image">
             <div class="adder__upload">
               <input style="display: none" type="file" (change)="onFileSelected($event)" #fileInput />
               <button class="btn btn-default adder__setimage" (click)="fileInput.click()">Wybierz zdjęcie</button>
-              <!-- <button class="btn btn-primary adder__uploadbtn" type="submit" (click)="onUpload()">Zmień</button> -->
               <p *ngIf="selectedFile">Wybrane zdjęcie: {{ selectedFile.name }}</p>
             </div>
             <div class="login__or">
@@ -47,10 +47,11 @@
                 <option value="" disabled selected hidden>Wybierz gatunek Twojego utworu...</option>
                 <option value="pop">Pop / Hity na czasie</option>
                 <option value="rock">Rock / Post-Rock / Alternatywny / Metal</option>
+                <option value="rap">Rap / Trill / Oldschool</option>
                 <option value="edm">House / Techno</option>
                 <option value="trance">Trance / Uplifting / Progresywny</option>
                 <option value="chill">Chillstep / Relaksująca / Ambient</option>
-                <option value="classic">Klasyczna / Opera / Muzyka filmowa</option>
+                <option value="classic">Klasyczna / Muzyka filmowa</option>
                 <option value="funk">Funk / Jazz</option>
               </select>
             </div>
@@ -62,6 +63,15 @@
             </div>
             <div class="form-group">
               <button type="submit" class="btn btn-dark">Zapisz</button>
+              <div *ngIf="showLoadingIndicator" [@enterAnimation]>
+                <p class="spinner-info">Dodaje informacje.. Analizuje plik..</p>
+                <mat-progress-spinner
+                  class="spinner-circle"
+                  [color]="color"
+                  [mode]="mode"
+                  [value]="value">
+                </mat-progress-spinner>
+              </div>
             </div>
           </form>
         </div>

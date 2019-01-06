@@ -58,7 +58,6 @@ export class UserProfileEditComponent implements OnInit {
   }
 
   getUser(): Observable<User> {
-    // const id = this.route.snapshot.paramMap.get('id');
     this.subForId$ = this.data.currentId.subscribe(res => this.id = res)
     return createHttpObservable(this.apiUrl + `users/${this.id}`)
       .pipe(

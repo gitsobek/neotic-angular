@@ -1,0 +1,87 @@
+    /*
+    Flaticon icon font: Flaticon
+    Creation date: 06/01/2019 16:28
+    */
+
+    @font-face {
+  font-family: "Flaticon";
+  src: url("./Flaticon.eot");
+  src: url("./Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("./Flaticon.woff") format("woff"),
+       url("./Flaticon.ttf") format("truetype"),
+       url("./Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("./Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+    .fi:before{
+        display: inline-block;
+  font-family: "Flaticon";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+    }
+
+    .flaticon-fast:before { content: "\f100"; }
+.flaticon-slow:before { content: "\f101"; }
+.flaticon-music:before { content: "\f102"; }
+.flaticon-piano:before { content: "\f103"; }
+.flaticon-piano-1:before { content: "\f104"; }
+.flaticon-music-and-multimedia:before { content: "\f105"; }
+.flaticon-piano-2:before { content: "\f106"; }
+.flaticon-orchestra:before { content: "\f107"; }
+.flaticon-musician:before { content: "\f108"; }
+.flaticon-dj:before { content: "\f109"; }
+.flaticon-dj-1:before { content: "\f10a"; }
+.flaticon-dj-2:before { content: "\f10b"; }
+.flaticon-yoga:before { content: "\f10c"; }
+.flaticon-yoga-1:before { content: "\f10d"; }
+.flaticon-beach:before { content: "\f10e"; }
+.flaticon-audio:before { content: "\f10f"; }
+.flaticon-musician-1:before { content: "\f110"; }
+.flaticon-group:before { content: "\f111"; }
+.flaticon-group-1:before { content: "\f112"; }
+.flaticon-fun:before { content: "\f113"; }
+.flaticon-club:before { content: "\f114"; }
+.flaticon-drink:before { content: "\f115"; }
+.flaticon-beer:before { content: "\f116"; }
+.flaticon-friendship:before { content: "\f117"; }
+    
+    $font-Flaticon-fast: "\f100";
+    $font-Flaticon-slow: "\f101";
+    $font-Flaticon-music: "\f102";
+    $font-Flaticon-piano: "\f103";
+    $font-Flaticon-piano-1: "\f104";
+    $font-Flaticon-music-and-multimedia: "\f105";
+    $font-Flaticon-piano-2: "\f106";
+    $font-Flaticon-orchestra: "\f107";
+    $font-Flaticon-musician: "\f108";
+    $font-Flaticon-dj: "\f109";
+    $font-Flaticon-dj-1: "\f10a";
+    $font-Flaticon-dj-2: "\f10b";
+    $font-Flaticon-yoga: "\f10c";
+    $font-Flaticon-yoga-1: "\f10d";
+    $font-Flaticon-beach: "\f10e";
+    $font-Flaticon-audio: "\f10f";
+    $font-Flaticon-musician-1: "\f110";
+    $font-Flaticon-group: "\f111";
+    $font-Flaticon-group-1: "\f112";
+    $font-Flaticon-fun: "\f113";
+    $font-Flaticon-club: "\f114";
+    $font-Flaticon-drink: "\f115";
+    $font-Flaticon-beer: "\f116";
+    $font-Flaticon-friendship: "\f117";

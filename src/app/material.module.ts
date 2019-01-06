@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { MatInputModule, MatTabsModule, MatButton, MatButtonToggle, MatButtonToggleModule, MatDialogModule, MatOptionModule, MatSelectModule, MatButtonModule, MatMenuModule, MatRadioButton, MatRadioModule } from '@angular/material';
+import { MatInputModule, MatTabsModule, MatButton, MatButtonToggle, MatButtonToggleModule, MatDialogModule, MatOptionModule, MatSelectModule, MatButtonModule, MatMenuModule, MatRadioButton, MatRadioModule, MatCardModule, MatProgressSpinnerModule } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material';
+import {MatSliderModule} from '@angular/material/slider';
 
 
 @NgModule({
@@ -14,6 +15,9 @@ import { MatFormFieldModule } from '@angular/material';
     MatOptionModule,
     MatMenuModule,
     MatRadioModule,
+    MatSliderModule,
+    MatCardModule,
+    MatProgressSpinnerModule,
     MatFormFieldModule,
     MatButtonModule,
     MatButtonToggleModule
@@ -25,6 +29,9 @@ import { MatFormFieldModule } from '@angular/material';
     MatDialogModule,
     MatOptionModule,
     MatRadioModule,
+    MatSliderModule,
+    MatCardModule,
+    MatProgressSpinnerModule,
     MatMenuModule,
     MatFormFieldModule,
     MatButtonModule,

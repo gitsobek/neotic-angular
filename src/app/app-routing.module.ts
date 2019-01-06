@@ -11,6 +11,7 @@ import { UserProfileDisplayComponent } from './ui/user-profile-display/user-prof
 import { RouteGuardService } from './core/guards/route-guard.service';
 import { UserProfileEditComponent } from './ui/user-profile-edit/user-profile-edit.component';
 import { AddtrackComponent } from './ui/addtrack/addtrack.component';
+import { PreferencesListComponent } from './ui/preferences-list/preferences-list.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'profile/:id', component: UserProfileDisplayComponent, canActivate: [RouteGuardService] },
   { path: 'myprofile', component: UserProfileEditComponent, canActivate: [RouteGuardService] },
   { path: 'add', component: AddtrackComponent, canActivate: [RouteGuardService] },
+  { path: 'find', component: PreferencesListComponent, canActivate: [RouteGuardService] },
   { path: 'admin', component: AdminPanelComponent, canActivate: [AuthGuardService],  data: { role: 'admin' } },
   { path: 'admin/users', component: UserinfoComponent, canActivate: [AuthGuardService],  data: { role: 'admin' } },
   { path: 'user', component: UserPanelComponent, canActivate: [AuthGuardService], data: { role: 'user' } }

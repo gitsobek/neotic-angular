@@ -21,6 +21,7 @@ export class AudioService {
     if(!this.audios[url]) {
       this.audios[url] = new Audio();
       await this.load(url, this.audios[url]);
+      this.audios[url].volume = 0.5
     }
 
     this.audios[url].play();
@@ -31,6 +32,26 @@ export class AudioService {
     Object.keys(this.audios).forEach(audio => {
       this.audios[audio].pause()
     });
+  }
+
+  public mute(url): void {
+    if (this.audios[url]) {
+      if (this.audios[url].muted) {
+        this.audios[url].muted = false;
+      } else {
+        this.audios[url].muted = true;
+      }
+    }
+  }
+
+  public changeVolume(volume, url): void {
+    volume = volume / 100;
+    if (volume === 0) {
+      this.audios[url].muted = true;
+    } else {
+      this.audios[url].muted = false;
+    }
+    this.audios[url].volume = volume;
   }
 
   public deleteAllSongs(): void {
