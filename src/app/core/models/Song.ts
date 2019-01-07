@@ -1,9 +1,15 @@
 export class Song {
-  id?: number;
+  _id: number;
   slug: string;
 	title: string;
 	artist: string;
 	genre: string;
   imageUrl: string;
-  duration: number
+  duration: number;
+  likes: number;
+  maxBeat: number;
+  minBeat: number;
+  avgBeat: number;
+  tempo: number;
+  _user: string;
 }

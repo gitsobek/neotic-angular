@@ -15,4 +15,8 @@ export class NeoticService {
     return 'http://localhost:3000/tracks/' + keyword;
   }
 
+  getFullStreamById(keyword: string) : string {
+    return 'http://localhost:3000/music/' + keyword + '.mp3';
+  }
+
 }

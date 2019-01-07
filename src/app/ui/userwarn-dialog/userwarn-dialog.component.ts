@@ -43,7 +43,6 @@ export class UserwarnDialogComponent implements OnInit, OnDestroy {
 
   saveUserRank(changes) {
     if(Object.values(changes)[0] == 'warn') {
-      console.log(changes);
       return fromPromise(fetch(this.apiUrl + `users/${this.user._id}/warn`, {
         method: 'PUT',
         body: JSON.stringify(changes),
