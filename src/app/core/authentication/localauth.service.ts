@@ -165,6 +165,7 @@ export class LocalAuthService {
     this.token = '';
     window.localStorage.removeItem('token');
     window.localStorage.removeItem('myData');
+    window.localStorage.removeItem('filters');
     this.router.navigateByUrl('/');
     this._notifService.success('Komunikat', 'Zostałeś wylogowany.')
   }
@@ -175,6 +176,8 @@ export class LocalAuthService {
     this.currentUser.next(null);
     this.token = '';
     window.localStorage.removeItem('token');
+    window.localStorage.removeItem('myData');
+    window.localStorage.removeItem('filters');
     this.router.navigateByUrl('/');
     this._notifService.success('Komunikat', 'Hasło zostało zmienione.')
   }

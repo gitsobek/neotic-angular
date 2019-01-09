@@ -38,7 +38,13 @@ export class MusicdemoComponent implements OnInit, OnDestroy {
       this.genre = 'rap';
       this.getSongs();
     } else if (event.index == 1) {
-      this.genre = 'edm';
+      this.genre = 'chill';
+      this.getSongs();
+    } else if (event.index == 2) {
+      this.genre = 'funk';
+      this.getSongs();
+    } else if (event.index == 3) {
+      this.genre = 'rock';
       this.getSongs();
     }
   }

@@ -31,6 +31,11 @@ export class UserProfileEditComponent implements OnInit {
   subForId$: Subscription;
   selectedFile: File;
   id: String
+  url;
+
+  showLike = 4;
+  showUpload = 4;
+  showPlaylist = 4;
 
   public warns: Array<String>;
   private submitted: boolean = false;
@@ -74,7 +79,8 @@ export class UserProfileEditComponent implements OnInit {
         this.uploaded = user.uploaded;
         this.playlist = user.playlist;
         this.liked = user.liked;
-        this.warns = user.warns
+        this.warns = user.warns;
+        this.url = user.avatarUrl;
       })
   }
 
@@ -83,7 +89,16 @@ export class UserProfileEditComponent implements OnInit {
   }
 
   onFileSelected(event) {
-    this.selectedFile = event.target.files[0];
+    if (event.target.files && event.target.files[0]) {
+      this.selectedFile = event.target.files[0];
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+      reader.onload = (event: any) => {
+        this.url = event.target.result;
+        var image = new Image();
+        image.src = event.target.result;
+      }
+    }
   }
 
   validateFile(name: String) {
@@ -132,6 +147,34 @@ export class UserProfileEditComponent implements OnInit {
   deleteSong(event) {
     var index = this.playlist.indexOf(event);
     this.playlist.splice(index, 1);
+  }
+
+  removeSong(event) {
+    var index = this.uploaded.indexOf(event);
+    this.uploaded.splice(index, 1);
+
+    var indexInPlaylist = this.playlist.findIndex(obj => obj._id == event._id);
+    var indexInLiked = this.liked.findIndex(obj => obj._id == event._id);
+
+    if (indexInPlaylist > -1) {
+      this.playlist.splice(indexInPlaylist, 1);
+    }
+
+    if (indexInLiked > -1) {
+      this.liked.splice(indexInLiked, 1);
+    }
+  }
+
+  increaseShowLiked() {
+    this.showLike += 4;
+  }
+
+  increaseShowUploaded() {
+    this.showUpload += 4;
+  }
+
+  increaseShowPlaylist() {
+    this.showPlaylist += 4;
   }
 
   ngOnDestroy() {

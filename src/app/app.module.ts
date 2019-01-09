@@ -24,6 +24,7 @@ import { UsersService } from './core/services/users.service';
 import { RouteGuardService } from './core/guards/route-guard.service';
 import { DataService } from './core/services/data.service';
 import { RoutingState } from './core/services/routing.service';
+import { SongdeletedialogComponent } from './ui/songdeletedialog/songdeletedialog.component';
 
 export function getAuthServiceConfigs() {
   let config = new AuthServiceConfig(
@@ -41,7 +42,8 @@ export function getAuthServiceConfigs() {
   declarations: [
     AppComponent,
     UserrankDialogComponent,
-    UserwarnDialogComponent
+    UserwarnDialogComponent,
+    SongdeletedialogComponent
   ],
   imports: [
     SocialLoginModule,
@@ -81,7 +83,8 @@ export function getAuthServiceConfigs() {
   bootstrap: [AppComponent],
   entryComponents: [
     UserrankDialogComponent,
-    UserwarnDialogComponent
+    UserwarnDialogComponent,
+    SongdeletedialogComponent
   ]
 })
 

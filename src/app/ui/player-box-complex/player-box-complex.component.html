@@ -7,8 +7,8 @@
   <div class="player-box__flex">
 
   <div class="player-box__content">
-    <span class="player-box__content-artist">{{ song.artist }}</span>
-    <span class="player-box__content-title">{{ song.title }}</span>
+    <span [ngStyle]="{'fontSize': song.artist.length > 16 ? '13px' : '16px' }" class="player-box__content-artist">{{ song.artist }}</span>
+    <span [ngStyle]="{'fontSize': song.title.length > 16 ? '16px' : '24px' }" class="player-box__content-title">{{ song.title }}</span>
     <a (click)='muteSong()' class="player-box__content-mute">
       <img *ngIf="!_audioService.audios[song.slug] || !_audioService.audios[song.slug].muted" src="src/assets/img/speakers-sound-small.png">
       <img *ngIf="_audioService.audios[song.slug] && _audioService.audios[song.slug].muted" src="src/assets/img/speakers-mute.png">
@@ -27,27 +27,33 @@
     </mat-slider>
     <div *ngIf="whoami" class="player-box__uploaded">
       <ng-container *ngIf="!router.url.includes('/profile')">
-      <p *ngIf="router.url != '/myprofile'" class="player-box__info-user">Wrzucone przez: <a class="player-box__user-upload" routerLink="/profile/{{song._user._id}}">{{ song._user.name }}</a></p>
-      <a *ngIf='showAdd' (click)="addToPlaylist(song)" data-toggle="popover" title="Dodaj ten utwór do playlisty." data-content="Some content inside the popover">
-        <i class="material-icons iconed" style="font-size: 50px">
-          playlist_add
-        </i>
-      </a>
-      <a *ngIf='showDelete' (click)="deleteSongFromPlaylist(song)" data-toggle="popover" title="Dodaj ten utwór do playlisty." data-content="Some content inside the popover">
+        <p *ngIf="router.url != '/myprofile'" class="player-box__info-user">Wrzucone przez: <a class="player-box__user-upload" routerLink="/profile/{{song._user._id}}">{{ song._user.name }}</a></p>
+        <a *ngIf='showAdd' (click)="addToPlaylist(song)" data-toggle="popover" title="Dodaj ten utwór do playlisty." data-content="Some content inside the popover">
+          <i class="material-icons iconed" style="font-size: 50px">
+            playlist_add
+          </i>
+        </a>
+        <a *ngIf='showDelete' (click)="deleteSongFromPlaylist(song)" data-toggle="popover" title="Usuń ten utwór z playlisty." data-content="Some content inside the popover">
           <i class="material-icons iconed" style="font-size: 50px">
             delete
           </i>
         </a>
-      <a *ngIf="!isSongLikedMethod(song)" (click)="addToLiked(song)" data-toggle="popover" title="Polub utwór." data-content="Some content inside the popover">
-          <i class="material-icons iconed" style="font-size: 50px">
-          star_border
-        </i>
-      </a>
-      <a *ngIf="isSongLikedMethod(song)" (click)="deleteSongFromLiked(song)" data-toggle="popover" title="Już mi się nie podoba." data-content="Some content inside the popover">
-        <i class="material-icons iconed" style="font-size: 50px">
-          star
-        </i>
-      </a>
+        <a *ngIf="!isSongLikedMethod(song)" (click)="addToLiked(song)" data-toggle="popover" title="Polub utwór." data-content="Some content inside the popover">
+            <i class="material-icons iconed staricon" style="font-size: 50px">
+            star_border
+          </i>
+        </a>
+        <a *ngIf="isSongLikedMethod(song)" (click)="deleteSongFromLiked(song)" data-toggle="popover" title="Już mi się nie podoba." data-content="Some content inside the popover">
+          <i class="material-icons iconed staricon" style="font-size: 50px">
+            star
+          </i>
+        </a>
+        <p class="player-box__likes">Polubienia: <b>{{ song.likes }}</b></p>
+        <a *ngIf='showRemove' (click)="openDialog(song)" data-toggle="popover" title="Usuń utwór z serwisu." data-content="Some content inside the popover">
+          <i class="material-icons iconed removalicon" style="font-size: 50px">
+            remove_circle
+          </i>
+        </a>
     </ng-container>
     </div>
   </div>

@@ -51,9 +51,9 @@ export class AddtrackComponent implements OnInit {
   apiUrl = environment.apiUrl;
 
   uploadForm = this.fb.group({
-    title: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(20)]],
-    artist: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(20)]],
-    description: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(40)]],
+    title: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(40)]],
+    artist: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(40)]],
+    description: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(60)]],
     genre: ['', Validators.required]
   });
 

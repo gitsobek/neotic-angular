@@ -4,10 +4,10 @@
     </div>
     <div class="col-sm-12">
       <div class="preference">
-        <h4 class="heading-centered">Wybierz interesujące Cie parametry.</h4>
-        <h4 class="heading-centered">Odkryj muzykę, która jest idealna dla Twoich potrzeb.</h4>
+      <h4 class="heading-centered">Wybierz interesujące Cie parametry.</h4>
+      <h4 class="heading-centered">Odkryj muzykę, która jest idealna dla Twoich potrzeb.</h4>
       <div class="preference__main">
-        <div class="preference__box">
+        <div  class="preference__box">
           <h3 class="heading-box">Czas</h3>
           <div class="preference__first-type">
             <div [ngClass]="'short' === this.currentTime ? 'preference__card-chosen': 'preference__card'"(click)="choseCard('short')">
@@ -75,17 +75,20 @@
               </div>
           </div>
         </div>
-        <div *ngIf="songs" class="preference__display">
+        <div id="destination" *ngIf="songs" [@enterAnimation] class="preference__display">
           <div class="preference__display-box">
             <p class="preference__count">Ilość znalezionych wyników: {{ songs.length }}</p>
             <app-player-box-complex
-              *ngFor="let song of songs"
+              *ngFor="let song of songs | slice:0:show; let i=index"
               [song]="song"
               [show-add]="true"
               [show-delete]="false"
               [masterArray]="songs"
               (addSong)="addSong($event)">
             </app-player-box-complex>
+            <div class="center-button2">
+              <a class="button-more button-more-white button-more-animated" *ngIf="show < songs.length" (click)="increaseShow()">Rozwiń</a>
+            </div>
           </div>
         </div>
       </div>

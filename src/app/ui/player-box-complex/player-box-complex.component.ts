@@ -7,6 +7,9 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { UserDetails, LocalAuthService } from 'src/app/core/authentication/localauth.service';
 import { Router, NavigationEnd } from '@angular/router';
+import { NotificationsService } from 'angular2-notifications';
+import { MatDialog } from '@angular/material';
+import { SongdeletedialogComponent } from '../songdeletedialog/songdeletedialog.component';
 
 @Component({
   selector: 'app-player-box-complex',
@@ -20,17 +23,16 @@ export class PlayerBoxComplexComponent implements OnInit, AfterViewInit {
   @Input("show-add") showAdd: boolean;
   @Input("show-delete") showDelete: boolean;
   @Input("show-like") showLike: boolean;
-	@Input("show-dislike") showDislike: boolean;
+  @Input("show-dislike") showDislike: boolean;
+  @Input("show-remove") showRemove: boolean;
   @ViewChild('mySeeker') mySeeker: ElementRef;
 
   @Output() deleteSong = new EventEmitter<any>();
   @Output() addSong = new EventEmitter<any>();
-  // @Output() deleteLike = new EventEmitter<any>();
-  // @Output() addLike = new EventEmitter<any>();
+  @Output() removeSong = new EventEmitter<any>();
 
   whoami: UserDetails;
   subscription$: Subscription;
-  subscriptionRoute$: Subscription;
   duration;
   onSeekState: boolean;
   isProfilePage: boolean;
@@ -61,7 +63,9 @@ export class PlayerBoxComplexComponent implements OnInit, AfterViewInit {
     public _audioService: AudioService,
     private authService: LocalAuthService,
     private http: HttpClient,
-    private router: Router) {
+    private router: Router,
+    private _notifService: NotificationsService,
+    public dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -113,9 +117,13 @@ export class PlayerBoxComplexComponent implements OnInit, AfterViewInit {
     this.addSong.next(song);
     return this.http.post(this.apiUrl + `songs/${song._id}/addplaylist/${this.whoami._id}`, { headers: { 'content-type': 'application-json'}})
       .subscribe((res) => {
-        console.log(res);
+        this._notifService.success('Komunikat', 'Playlista zaktualizowana.')
       }, (err) => {
-        console.log(err);
+        if(err.status === 400) {
+          this._notifService.error('Komunikat', err.error.message);
+        } else {
+          this._notifService.error('Komunikat', 'Błąd serwera.');
+        }
       });
   }
 
@@ -123,14 +131,19 @@ export class PlayerBoxComplexComponent implements OnInit, AfterViewInit {
     this.deleteSong.next(song);
     return this.http.post(this.apiUrl + `songs/${song._id}/removeplaylist/${this.whoami._id}`, { headers: { 'content-type': 'application-json'}})
     .subscribe((res) => {
-      console.log(res);
+      this._notifService.success('Komunikat', 'Playlista zaktualizowana.')
     }, (err) => {
-      console.log(err);
+      if(err.status === 400) {
+        this._notifService.error('Komunikat', err.error.message);
+      } else {
+        this._notifService.error('Komunikat', 'Błąd serwera.');
+      }
     });
   }
 
   addLike(song) {
     this.whoami['liked'].push(song._id);
+    this.song.likes += 1;
   }
 
   deleteLike(song) {
@@ -138,6 +151,7 @@ export class PlayerBoxComplexComponent implements OnInit, AfterViewInit {
     if (index !== -1) {
       this.whoami['liked'].splice(index, 1);
     }
+    this.song.likes -= 1;
   }
 
   likeExists(song) {
@@ -156,19 +170,49 @@ export class PlayerBoxComplexComponent implements OnInit, AfterViewInit {
     return this.http.post(this.apiUrl + `songs/${song._id}/addliked/${this.whoami._id}`, { headers: { 'content-type': 'application-json'}})
     .subscribe((res) => {
       this.addLike(song);
+      this._notifService.success('Komunikat', 'Dodano do polubionych.')
     }, (err) => {
-      console.log(err);
+      if(err.status === 400) {
+        this._notifService.error('Komunikat', err.error.message);
+      } else {
+        this._notifService.error('Komunikat', 'Błąd serwera.');
+      }
     });
   }
 
   deleteSongFromLiked(song) {
     return this.http.post(this.apiUrl + `songs/${song._id}/removeliked/${this.whoami._id}`, { headers: { 'content-type': 'application-json'}})
     .subscribe((res) => {
-      // this.deleteLike.next(song);
       this.deleteLike(song);
+      this._notifService.success('Komunikat', 'Usunięto z polubionych.')
     }, (err) => {
-      console.log(err);
+      if(err.status === 400) {
+        this._notifService.error('Komunikat', err.error.message);
+      } else {
+        this._notifService.error('Komunikat', 'Błąd serwera.');
+      }
     });
+  }
+
+  openDialog(song) {
+    let dialogRef = this.dialog.open(SongdeletedialogComponent, {
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        return this.http.delete(this.apiUrl + `songs/${song._id}`, { headers: { 'content-type': 'application-json'}})
+          .subscribe((res) => {
+            this.removeSong.next(song);
+            this._notifService.success('Komunikat', 'Utwór został usunięty.')
+          }, (err) => {
+            if(err.status === 400) {
+              this._notifService.error('Komunikat', err.error.message);
+            } else {
+              this._notifService.error('Komunikat', 'Błąd serwera.');
+            }
+          });
+      }
+    })
   }
 
   getImageUrl() {

@@ -28,6 +28,9 @@ export class UserProfileDisplayComponent implements OnInit, OnDestroy {
   public warns: Array<String>;
 
   apiUrl = environment.apiUrl;
+  showLike = 4;
+  showUpload = 4;
+  showPlaylist = 4;
 
   constructor(
     private route: ActivatedRoute,
@@ -60,6 +63,18 @@ export class UserProfileDisplayComponent implements OnInit, OnDestroy {
 
   goBack(): void {
     this.location.back();
+  }
+
+  increaseShowLiked() {
+    this.showLike += 4;
+  }
+
+  increaseShowUploaded() {
+    this.showUpload += 4;
+  }
+
+  increaseShowPlaylist() {
+    this.showPlaylist += 4;
   }
 
   ngOnDestroy() {

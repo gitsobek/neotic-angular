@@ -64,6 +64,9 @@
                   [show-like]="false"
                   [show-dislike]="false">
                 </app-player-box-complex>
+                <div class="center-button2">
+                  <a class="button-more button-more-white button-more-animated" *ngIf="showLike < liked.length" (click)="increaseShowLiked()">Rozwiń</a>
+                </div>
               </div>
             </mat-tab>
             <mat-tab label="Uploadowane">
@@ -76,6 +79,9 @@
                   [show-like]="false"
                   [show-dislike]="false">
                 </app-player-box-complex>
+                <div class="center-button2">
+                  <a class="button-more button-more-white button-more-animated" *ngIf="showUpload < uploaded.length" (click)="increaseShowUploaded()">Rozwiń</a>
+                </div>
               </div>
             </mat-tab>
             <mat-tab label="Playlista">
@@ -89,6 +95,9 @@
                   [show-dislike]="false"
                   (deleteSong)="deleteSong($event)">
               </app-player-box-complex>
+              <div class="center-button2">
+                <a class="button-more button-more-white button-more-animated" *ngIf="showPlaylist < playlist.length" (click)="increaseShowPlaylist()">Rozwiń</a>
+              </div>
               </div>
             </mat-tab>
         </mat-tab-group>

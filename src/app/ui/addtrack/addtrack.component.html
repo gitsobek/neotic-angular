@@ -25,6 +25,7 @@
               <input type="text" formControlName="title" class="adder__input form-control" [ngClass]="{ 'is-invalid': submitted && f.title.errors }" placeholder="Podaj tytuł utworu..."/>
               <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
                 <div *ngIf="f.title.errors.required">Podaj tytuł!</div>
+                <div *ngIf="f.title.errors.minlength || f.title.errors.maxlength">Nazwa utworu musi mieć od 1 do 40 znaków!</div>
               </div>
             </div>
             <div class="form-group">
@@ -32,6 +33,7 @@
               <input type="text" formControlName="artist" class="adder__input form-control" [ngClass]="{ 'is-invalid': submitted && f.artist.errors }" placeholder="Podaj nazwę artysty / DJ..."/>
               <div *ngIf="submitted && f.artist.errors" class="invalid-feedback">
                 <div *ngIf="f.artist.errors.required">Podaj nazwę artysty!</div>
+                <div *ngIf="f.artist.errors.minlength || f.artist.errors.maxlength">Nazwa artysty musi mieć od 1 do 40 znaków!</div>
               </div>
             </div>
             <div class="form-group">
@@ -39,6 +41,7 @@
               <input type="text" formControlName="description" class="adder__input form-control" [ngClass]="{ 'is-invalid': submitted && f.description.errors }" placeholder="Krótki opis utworu"/>
               <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
                 <div *ngIf="f.description.errors.required">Podaj opis!</div>
+                <div *ngIf="f.description.errors.minlength || f.description.errors.maxlength">Opis musi mieć od 4 do 60 znaków!</div>
               </div>
             </div>
             <div class="form-group">

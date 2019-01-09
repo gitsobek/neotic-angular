@@ -2,3 +2,94 @@
 @import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
 @import "../node_modules/bootstrap-social/bootstrap-social.css";
 @import '~material-design-icons/iconfont/material-icons.css';
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #a6a6a6;
+  box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: lightgray;;
+  box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+}
+
+.center-button2 {
+  display: flex;
+  justify-content: center;
+}
+
+$color-primary: #55c57a;
+$color-white: #fff;
+$color-black: #000;
+$color-grey-dark: #777;
+$color-grey-dark-2: #999;
+$color-grey-dark-3: #333;
+$default-font-size: 16px;
+
+.button-more {
+  &,
+  &:link,
+  &:visited {
+      margin: auto;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 1rem 2.5rem;
+      text-align: center;
+      display: inline-block;
+      border-radius: 10rem;
+      transition: all .2s;
+      position: relative;
+      font-size: $default-font-size;
+      border: none;
+      cursor: pointer;
+  }
+
+  &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 1rem 2rem rgba($color-black, .2);
+
+      &::after {
+          transform: scaleX(1.4) scaleY(1.6);
+          opacity: 0;
+      }
+  }
+
+  &:active,
+  &:focus {
+      outline: none;
+      transform: translateY(-1px);
+      box-shadow: 0 .5rem 1rem rgba($color-black, .2);
+  }
+
+  &::after {
+      content: "";
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      border-radius: 10rem;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      transition: all .4s;
+  }
+}
+.button-more-white {
+      background-color: $color-white;
+      color: $color-grey-dark;
+
+      &::after {
+          background-color: $color-white;
+      }
+  }
+
+.button-more-animated {
+      animation: moveInBottom .5s ease-out .75s;
+      animation-fill-mode: backwards;
+  }

@@ -6,11 +6,25 @@ import { environment } from 'src/environments/environment';
 import { Song } from 'src/app/core/models/Song';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { trigger, transition, useAnimation, query, stagger, animateChild, style, animate, group, keyframes } from '@angular/animations';
+import { ScrollToService, ScrollToConfigOptions } from '@nicky-lenaers/ngx-scroll-to';
+import { moveDown, slideIn, slideOut } from 'src/app/animations';
 
 @Component({
   selector: 'app-preferences-list',
   templateUrl: './preferences-list.component.html',
-  styleUrls: ['./preferences-list.component.scss']
+  styleUrls: ['./preferences-list.component.scss'],
+  animations: [
+    trigger('enterAnimation', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('1s', style({ opacity: 1 })),
+      ]),
+      transition(':leave', [
+        animate('2s', style({ opacity: 0 }))
+      ])
+    ])
+  ]
 })
 export class PreferencesListComponent implements OnInit, OnDestroy {
 
@@ -25,20 +39,39 @@ export class PreferencesListComponent implements OnInit, OnDestroy {
   currentType: String = '';
   currentMood: String = '';
   isSongLiked: boolean;
+  objectToSend = {};
 
   apiUrl = environment.apiUrl;
+  show = 6;
+  storageName = 'filters';
 
   constructor(
     private _notifService: NotificationsService,
     private authService: LocalAuthService,
-    private http: HttpClient
+    private http: HttpClient,
+    private _scrollToService: ScrollToService
   ) { }
 
   ngOnInit() {
+    let data = localStorage.getItem(this.storageName);
     this.subscription$ = this.authService.user.subscribe(user => {
       this.whoami = user;
-      this.sendData();
+      if (data) {
+        this.fetchFilteredSongs(data);
+      }
     });
+  }
+
+  fetchFilteredSongs(data) {
+    this.http.post(this.apiUrl + `songs/findpreference/${this.whoami._id}`, JSON.parse(data))
+      .pipe(
+        map(res => res["data"])
+      )
+      .subscribe((filteredSongs: any) => {
+        this.songs = filteredSongs;
+      }, (err) => {
+        console.log(err);
+      })
   }
 
   choseCard(value) {
@@ -79,21 +112,38 @@ export class PreferencesListComponent implements OnInit, OnDestroy {
     }
   }
 
+  public triggerScrollToDestination(destination: string) {
+
+    const config: ScrollToConfigOptions = {
+      target: destination
+    };
+
+    this._scrollToService.scrollTo(config);
+  }
+
   sendData() {
-    var objectToSend = {
+    this.objectToSend = {
       time: this.currentTime,
       type: this.currentType,
       mood: this.currentMood,
       _user: this.whoami._id
     }
 
-    this.http.post(this.apiUrl + `songs/findpreference/${this.whoami._id}`, objectToSend)
+    var object = this.objectToSend
+
+    this.http.post(this.apiUrl + `songs/findpreference/${this.whoami._id}`, object)
       .pipe(
         map(res => res["data"])
       )
       .subscribe((filteredSongs: any) => {
         console.log(filteredSongs);
+        localStorage.setItem(this.storageName, JSON.stringify(this.objectToSend));
         this.songs = filteredSongs;
+        this.isDisable = true;
+        this.currentTime = '';
+        this.currentType = '';
+        this.currentMood = '';
+        this.triggerScrollToDestination('destination');
       }, (err) => {
         this.showLoadingIndicator = false;
         if(err.status === 400) {
@@ -132,10 +182,13 @@ export class PreferencesListComponent implements OnInit, OnDestroy {
     }
   }
 
+  increaseShow() {
+    this.show += 4;
+  }
+
   ngOnDestroy() {
     if (this.subscription$) {
       this.subscription$.unsubscribe();
     }
   }
-
 }
