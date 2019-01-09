@@ -1,8 +1,8 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, ViewEncapsulation } from '@angular/core';
 import { User } from 'src/app/core/models/User';
 import { Subscription, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { Location } from '@angular/common';
 import { UsersService } from 'src/app/core/services/users.service';
 import { createHttpObservable } from 'src/app/core/utils/data';
@@ -13,15 +13,20 @@ import { NotificationsService } from 'angular2-notifications';
 import { matchOtherValidator } from 'src/app/core/utils/confirm-password';
 import { LocalAuthService } from 'src/app/core/authentication/localauth.service';
 import { DataService } from 'src/app/core/services/data.service';
+import { Song } from 'src/app/core/models/Song';
 
 @Component({
   selector: 'app-user-profile-edit',
   templateUrl: './user-profile-edit.component.html',
-  styleUrls: ['./user-profile-edit.component.scss']
+  styleUrls: ['./user-profile-edit.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class UserProfileEditComponent implements OnInit {
 
   @Input() user: User;
+  uploaded: Song[];
+  playlist: Song[];
+  liked: Song[];
   subscription$: Subscription;
   subForId$: Subscription;
   selectedFile: File;
@@ -43,6 +48,7 @@ export class UserProfileEditComponent implements OnInit {
     private _userService: UsersService,
     private _authService: LocalAuthService,
     private location: Location,
+    private router: Router,
     private http: HttpClient,
     private fb: FormBuilder,
     private _notifService: NotificationsService,
@@ -65,6 +71,9 @@ export class UserProfileEditComponent implements OnInit {
       )
       .subscribe(user => {
         this.user = user
+        this.uploaded = user.uploaded;
+        this.playlist = user.playlist;
+        this.liked = user.liked;
         this.warns = user.warns
       })
   }
@@ -118,6 +127,11 @@ export class UserProfileEditComponent implements OnInit {
     }
 
     this._authService.changePassword(this.user._id, this.passwordForm.value);
+  }
+
+  deleteSong(event) {
+    var index = this.playlist.indexOf(event);
+    this.playlist.splice(index, 1);
   }
 
   ngOnDestroy() {

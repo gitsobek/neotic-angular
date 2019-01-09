@@ -1,4 +1,4 @@
-<div class="player-box">
+<div *ngIf="song" class="player-box">
   <div class="player-box__control">
     <img *ngIf="!_audioService.audios[song.slug] || _audioService.audios[song.slug].paused" (click)="playSong()" class="player-box__controller" src="../../../assets/img/play-button.png"/>
     <img *ngIf="_audioService.audios[song.slug] && !_audioService.audios[song.slug].paused" (click)="stopSong()" class="player-box__controller" src="../../../assets/img/pause.png"/>
@@ -25,23 +25,30 @@
       [(ngModel)]="value"
       [vertical]="vertical">
     </mat-slider>
-    <div class="player-box__uploaded">
-      <p class="player-box__info-user">Wrzucone przez: <a class="player-box__user-upload" routerLink="/profile/{{song._user._id}}">{{ song._user.name }}</a></p>
-      <a (click)="addToPlaylist(song._id)" data-toggle="popover" title="Dodaj ten utwór do playlisty." data-content="Some content inside the popover">
+    <div *ngIf="whoami" class="player-box__uploaded">
+      <ng-container *ngIf="!router.url.includes('/profile')">
+      <p *ngIf="router.url != '/myprofile'" class="player-box__info-user">Wrzucone przez: <a class="player-box__user-upload" routerLink="/profile/{{song._user._id}}">{{ song._user.name }}</a></p>
+      <a *ngIf='showAdd' (click)="addToPlaylist(song)" data-toggle="popover" title="Dodaj ten utwór do playlisty." data-content="Some content inside the popover">
         <i class="material-icons iconed" style="font-size: 50px">
           playlist_add
         </i>
       </a>
-      <a data-toggle="popover" title="Polub utwór." data-content="Some content inside the popover">
+      <a *ngIf='showDelete' (click)="deleteSongFromPlaylist(song)" data-toggle="popover" title="Dodaj ten utwór do playlisty." data-content="Some content inside the popover">
+          <i class="material-icons iconed" style="font-size: 50px">
+            delete
+          </i>
+        </a>
+      <a *ngIf="!isSongLikedMethod(song)" (click)="addToLiked(song)" data-toggle="popover" title="Polub utwór." data-content="Some content inside the popover">
           <i class="material-icons iconed" style="font-size: 50px">
           star_border
         </i>
       </a>
-      <a data-toggle="popover" title="Już mi się nie podoba." data-content="Some content inside the popover">
+      <a *ngIf="isSongLikedMethod(song)" (click)="deleteSongFromLiked(song)" data-toggle="popover" title="Już mi się nie podoba." data-content="Some content inside the popover">
         <i class="material-icons iconed" style="font-size: 50px">
           star
         </i>
       </a>
+    </ng-container>
     </div>
   </div>
   <div *ngIf="_audioService.audios[song.slug]" class="player-box__timeseeker">

@@ -78,7 +78,14 @@
         <div *ngIf="songs" class="preference__display">
           <div class="preference__display-box">
             <p class="preference__count">Ilość znalezionych wyników: {{ songs.length }}</p>
-            <app-player-box-complex *ngFor="let song of songs" [song]="song"></app-player-box-complex>
+            <app-player-box-complex
+              *ngFor="let song of songs"
+              [song]="song"
+              [show-add]="true"
+              [show-delete]="false"
+              [masterArray]="songs"
+              (addSong)="addSong($event)">
+            </app-player-box-complex>
           </div>
         </div>
       </div>

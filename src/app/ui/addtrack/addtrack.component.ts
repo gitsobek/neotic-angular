@@ -172,6 +172,9 @@ export class AddtrackComponent implements OnInit {
             return this.http.post(this.apiUrl + `songs/uploadimage/${idOfSong}`, imageData, { headers: headers })
           }),
           concatMap(() => {
+            return this.http.post(this.apiUrl + `songs/${idOfSong}/adduploaded/${this.user._id}`, { headers: { 'content-type': 'application-json'}})
+          }),
+          concatMap(() => {
             return this.http.post(this.apiUrl + `tracks/analysis/${idOfSong}`, songData, HttpUploadOptions)
           })
         )

@@ -53,18 +53,43 @@
             </div>
           </ng-container>
         </div>
-        <mat-tab-group class="profile__musiclist" dynamicHeight>
+        <mat-tab-group mat-stretch-tabs class="example-stretched-tabs profile__musiclist" dynamicHeight>
             <mat-tab label="Polubione">
-              <div class="example-large-box mat-elevation-z4">
+              <div *ngIf="liked" class="example-large-box mat-elevation-z4">
+                <app-player-box-complex
+                  *ngFor="let like of liked"
+                  [song]="like"
+                  [show-add]="false"
+                  [show-delete]="false"
+                  [show-like]="false"
+                  [show-dislike]="false">
+                </app-player-box-complex>
               </div>
             </mat-tab>
             <mat-tab label="Uploadowane">
               <div class="example-large-box mat-elevation-z4">
+                  <app-player-box-complex
+                  *ngFor="let upload of uploaded"
+                  [song]="upload"
+                  [show-add]="false"
+                  [show-delete]="false"
+                  [show-like]="false"
+                  [show-dislike]="false">
+                </app-player-box-complex>
               </div>
             </mat-tab>
             <mat-tab label="Playlista">
-                <div class="example-large-box mat-elevation-z4">
-                </div>
+              <div class="example-large-box mat-elevation-z4">
+                  <app-player-box-complex
+                  *ngFor="let play of playlist"
+                  [song]="play"
+                  [show-add]="false"
+                  [show-delete]="false"
+                  [show-like]="false"
+                  [show-dislike]="false"
+                  (deleteSong)="deleteSong($event)">
+              </app-player-box-complex>
+              </div>
             </mat-tab>
         </mat-tab-group>
       </div>

@@ -1,10 +1,12 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit, Output, EventEmitter } from '@angular/core';
 import { Song } from 'src/app/core/models/Song';
 import { AudioService } from 'src/app/core/services/audio.service';
 import { coerceNumberProperty } from '@angular/cdk/coercion';
-import { fromEvent } from 'rxjs';
+import { fromEvent, Subscription } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { UserDetails, LocalAuthService } from 'src/app/core/authentication/localauth.service';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-player-box-complex',
@@ -14,9 +16,24 @@ import { environment } from 'src/environments/environment';
 export class PlayerBoxComplexComponent implements OnInit, AfterViewInit {
 
   @Input() song: Song;
+  @Input() masterArray : Song[];
+  @Input("show-add") showAdd: boolean;
+  @Input("show-delete") showDelete: boolean;
+  @Input("show-like") showLike: boolean;
+	@Input("show-dislike") showDislike: boolean;
   @ViewChild('mySeeker') mySeeker: ElementRef;
+
+  @Output() deleteSong = new EventEmitter<any>();
+  @Output() addSong = new EventEmitter<any>();
+  // @Output() deleteLike = new EventEmitter<any>();
+  // @Output() addLike = new EventEmitter<any>();
+
+  whoami: UserDetails;
+  subscription$: Subscription;
+  subscriptionRoute$: Subscription;
   duration;
   onSeekState: boolean;
+  isProfilePage: boolean;
 
   defaultImageUrl = '/assets/img/no-image.gif';
   autoTicks = false;
@@ -42,10 +59,15 @@ export class PlayerBoxComplexComponent implements OnInit, AfterViewInit {
 
   constructor(
     public _audioService: AudioService,
-    private http: HttpClient) {
+    private authService: LocalAuthService,
+    private http: HttpClient,
+    private router: Router) {
   }
 
   ngOnInit() {
+    this.subscription$ = this.authService.user.subscribe(user => {
+      this.whoami = user;
+    });
   }
 
   ngAfterViewInit() {
@@ -87,13 +109,66 @@ export class PlayerBoxComplexComponent implements OnInit, AfterViewInit {
     }
   }
 
-  addToPlaylist(idOfSong) {
-    return this.http.post(this.apiUrl + `songs/addplaylist/${idOfSong}`, { headers: { 'content-type': 'application-json'}})
+  addToPlaylist(song) {
+    this.addSong.next(song);
+    return this.http.post(this.apiUrl + `songs/${song._id}/addplaylist/${this.whoami._id}`, { headers: { 'content-type': 'application-json'}})
       .subscribe((res) => {
         console.log(res);
       }, (err) => {
         console.log(err);
       });
+  }
+
+  deleteSongFromPlaylist(song) {
+    this.deleteSong.next(song);
+    return this.http.post(this.apiUrl + `songs/${song._id}/removeplaylist/${this.whoami._id}`, { headers: { 'content-type': 'application-json'}})
+    .subscribe((res) => {
+      console.log(res);
+    }, (err) => {
+      console.log(err);
+    });
+  }
+
+  addLike(song) {
+    this.whoami['liked'].push(song._id);
+  }
+
+  deleteLike(song) {
+    var index = this.whoami['liked'].indexOf(song._id);
+    if (index !== -1) {
+      this.whoami['liked'].splice(index, 1);
+    }
+  }
+
+  likeExists(song) {
+    return this.whoami['liked'].indexOf(song._id) > -1
+  }
+
+  isSongLikedMethod(song) {
+    if (this.likeExists(song)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  addToLiked(song) {
+    return this.http.post(this.apiUrl + `songs/${song._id}/addliked/${this.whoami._id}`, { headers: { 'content-type': 'application-json'}})
+    .subscribe((res) => {
+      this.addLike(song);
+    }, (err) => {
+      console.log(err);
+    });
+  }
+
+  deleteSongFromLiked(song) {
+    return this.http.post(this.apiUrl + `songs/${song._id}/removeliked/${this.whoami._id}`, { headers: { 'content-type': 'application-json'}})
+    .subscribe((res) => {
+      // this.deleteLike.next(song);
+      this.deleteLike(song);
+    }, (err) => {
+      console.log(err);
+    });
   }
 
   getImageUrl() {
@@ -104,6 +179,8 @@ export class PlayerBoxComplexComponent implements OnInit, AfterViewInit {
   }
 
   ngOnDestroy() {
+    if (this.subscription$)
+      this.subscription$.unsubscribe();
     this._audioService.pause();
     this._audioService.deleteAllSongs();
   }

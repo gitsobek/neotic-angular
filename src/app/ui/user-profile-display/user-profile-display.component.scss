@@ -109,15 +109,20 @@ p.c {
 
 .example-small-box, .example-large-box {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-  margin: 16px;
+  align-content: center;
   padding: 16px;
+  margin: 16px;
   border-radius: 8px;
 }
 
 .mat-tab-labels {
   border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
+}
+
+.example-stretched-tabs {
+  width: 650px;
 }
 
 .mat-tab-labels, .mat-tab-label, .mat-tab-link {
@@ -137,7 +142,8 @@ p.c {
 }
 
 .example-large-box {
-  padding: 15px;
+  padding: 0 45px;
+  justify-content: center;
   height: auto;
   width: 95%;
 }

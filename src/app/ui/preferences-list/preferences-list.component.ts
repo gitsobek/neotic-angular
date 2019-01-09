@@ -24,6 +24,7 @@ export class PreferencesListComponent implements OnInit, OnDestroy {
   currentTime: String = '';
   currentType: String = '';
   currentMood: String = '';
+  isSongLiked: boolean;
 
   apiUrl = environment.apiUrl;
 
@@ -86,7 +87,7 @@ export class PreferencesListComponent implements OnInit, OnDestroy {
       _user: this.whoami._id
     }
 
-    this.http.post(this.apiUrl + 'songs/findpreference', objectToSend)
+    this.http.post(this.apiUrl + `songs/findpreference/${this.whoami._id}`, objectToSend)
       .pipe(
         map(res => res["data"])
       )
@@ -101,6 +102,34 @@ export class PreferencesListComponent implements OnInit, OnDestroy {
           this._notifService.error('Komunikat', 'Błąd serwera.');
         }
       })
+  }
+
+  addSong(event) {
+    var index = this.songs.indexOf(event);
+    this.songs.splice(index, 1);
+  }
+
+  likeSong(event) {
+    console.log(this.whoami['liked']);
+    this.whoami['liked'].push(event);
+    console.log(this.whoami['liked']);
+  }
+
+  dislikeSong(event) {
+    console.log(this.whoami['liked']);
+    var index = this.whoami['liked'].findIndex(function(o){
+      return o.id === event._id;
+    })
+    if (index !== -1) this.whoami['liked'].splice(index, 1);
+    console.log(this.whoami['liked']);
+  }
+
+  isSongLikedMethod(id) {
+    if(this.whoami['liked'].includes(id)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   ngOnDestroy() {

@@ -8,6 +8,7 @@ import { Observable, Subscription, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { map, tap } from 'rxjs/operators';
 import { LocalAuthService, UserDetails } from 'src/app/core/authentication/localauth.service';
+import { Song } from 'src/app/core/models/Song';
 
 @Component({
   selector: 'app-user-profile-display',
@@ -18,6 +19,9 @@ import { LocalAuthService, UserDetails } from 'src/app/core/authentication/local
 export class UserProfileDisplayComponent implements OnInit, OnDestroy {
 
   @Input() user: User;
+  uploaded: Song[];
+  playlist: Song[];
+  liked: Song[];
   whoami: UserDetails;
   subscription$: Subscription;
 
@@ -47,6 +51,9 @@ export class UserProfileDisplayComponent implements OnInit, OnDestroy {
       )
       .subscribe(user => {
         this.user = user
+        this.uploaded = user.uploaded;
+        this.playlist = user.playlist;
+        this.liked = user.liked;
         this.warns = user.warns
       })
   }
