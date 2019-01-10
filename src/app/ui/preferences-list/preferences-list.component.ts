@@ -57,6 +57,7 @@ export class PreferencesListComponent implements OnInit, OnDestroy {
     this.subscription$ = this.authService.user.subscribe(user => {
       this.whoami = user;
       if (data) {
+        console.log(data);
         this.fetchFilteredSongs(data);
       }
     });
