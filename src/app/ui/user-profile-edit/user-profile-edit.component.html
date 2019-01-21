@@ -36,9 +36,9 @@
             <div class="card-header">Informacje <i class="fa fa-link fa-1x"></i></div>
             <div class="card-body">
               <ul class="activity-list">
-                <li class="activity-list--item">Ilość polubień: <b>0</b></li>
-                <li class="activity-list--item">Ilość uploadów: <b>0</b></li>
-                <li class="activity-list--item">Ilość utworów w playlist: <b>0</b></li>
+                <li class="activity-list--item">Ilość polubień: <b>{{ user.liked.length }}</b></li>
+                <li class="activity-list--item">Ilość uploadów: <b>{{ user.uploaded.length }}</b></li>
+                <li class="activity-list--item">Ilość utworów w playlist: <b>{{ user.playlist.length }}</b></li>
                 <li class="activity-list--itemdate">Ostatnio zalogowany: <p class="c"><b>{{user.lastTimeOnline}}</b></p></li>
               </ul>
             </div>
@@ -137,7 +137,7 @@
                       </div>
                   </div>
                   <div class="form-group">
-                    <button type="submit" class="login__primary-button">Zaloguj</button>
+                    <button type="submit" class="login__primary-button">Zmień</button>
                   </div>
                 </form>
               </div>

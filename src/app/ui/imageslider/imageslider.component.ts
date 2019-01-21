@@ -5,6 +5,7 @@ import { NotificationsService } from 'angular2-notifications';
 import 'bootstrap';
 import * as $ from 'jquery';
 import { ScrollToService, ScrollToConfigOptions } from '@nicky-lenaers/ngx-scroll-to';
+import { Form } from '@angular/forms';
 
 @Component({
   selector: 'app-imageslider',
@@ -25,14 +26,15 @@ export class ImagesliderComponent implements OnInit {
     $("#slides").carousel('pause');
   }
 
-  addEmail(email) {
+  addEmail(email, f) {
     this._mailService.sendEmailAdress(email).subscribe(result => {
       this._notifService.success('Komunikat', 'Mail został dodany.');
+      f.resetForm();
     }, err => {
       if(err.status === 500 || err.status === 0)
-        this._notifService.error('Komunikat', 'Błąd serwera.');
-      else
         this._notifService.error('Komunikat', 'Podany mail już istnieje.');
+      else
+        this._notifService.error('Komunikat', 'Błąd serwera');
     });
   }
 
