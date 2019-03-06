@@ -1,9 +1,13 @@
 @import "src/assets/scss/imports";
 
-$buttonColor: #2E2D3B;
+$buttonColor: #2e2d3b;
 
 .col {
   padding: 0;
+}
+
+.container {
+  margin-top: 0 !important;
 }
 
 .carousel-inner img {

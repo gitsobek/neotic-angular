@@ -1,99 +1,215 @@
 <div class="container">
   <div class="row align-items-start">
-    <div class="col">
-    </div>
+    <div class="col"></div>
     <div class="col-sm-12">
       <div class="preference">
-      <h4 class="heading-centered">Wybierz interesujące Cie parametry.</h4>
-      <h4 class="heading-centered">Odkryj muzykę, która jest idealna dla Twoich potrzeb.</h4>
-      <div class="preference__main">
-        <div  class="preference__box">
-          <h3 class="heading-box">Czas</h3>
-          <div class="preference__first-type">
-            <div [ngClass]="'short' === this.currentTime ? 'preference__card-chosen': 'preference__card'"(click)="choseCard('short')">
-              <i class="preference__card-icon preference__card-icon-1 flaticon-fast"></i>
-              <h3 class="heading-tertiary u-margin-bottom-small">Krótkie</h3>
-              <p class="preference__card-text">Długość: &lt; 4min.</p>
-            </div>
-            <div [ngClass]="'long' === this.currentTime ? 'preference__card-chosen': 'preference__card'" (click)="choseCard('long')">
-              <i class="preference__card-icon preference__card-icon-1 flaticon-slow"></i>
-              <h3 class="heading-tertiary u-margin-bottom-small">Długie</h3>
-              <p class="preference__card-text">Długość: &gt; 4min.</p>
-            </div>
-          </div>
-          <h3 class="heading-box">Rodzaj</h3>
-          <div class="preference__second-type">
-            <div [ngClass]="'instrumental' === this.currentType ? 'preference__card-chosen preference__card-2': 'preference__card preference__card-2'"(click)="choseCard('instrumental')">
-              <i class="preference__card-icon preference__card-icon-2 flaticon-orchestra"></i>
-              <h3 class="heading-tertiary u-margin-bottom-small">Instrumentalna</h3>
-              <p class="preference__card-text">Klasyczna, Filmowa, Jazz oraz Funk.</p>
-            </div>
-            <div [ngClass]="'dance' === this.currentType ? 'preference__card-chosen preference__card-2': 'preference__card preference__card-2'"(click)="choseCard('dance')">
-              <i class="preference__card-icon preference__card-icon-2 flaticon-dj"></i>
-              <h3 class="heading-tertiary u-margin-bottom-small">Taneczna</h3>
-              <p class="preference__card-text">House, Techno oraz Trance.</p>
-            </div>
-            <div [ngClass]="'guitar' === this.currentType ? 'preference__card-chosen preference__card-2': 'preference__card preference__card-2'"(click)="choseCard('guitar')">
-              <i class="preference__card-icon preference__card-icon-2 flaticon-music"></i>
-              <h3 class="heading-tertiary u-margin-bottom-small">Gitarowa</h3>
-              <p class="preference__card-text">Rock alternatywny oraz o ostrym brzmieniu.</p>
-            </div>
-            <div [ngClass]="'party' === this.currentType ? 'preference__card-chosen preference__card-2': 'preference__card preference__card-2'"(click)="choseCard('party')">
-              <i class="preference__card-icon preference__card-icon-2 flaticon-musician"></i>
-              <h3 class="heading-tertiary u-margin-bottom-small">Rozrywkowa</h3>
-              <p class="preference__card-text">Popularna, radiowa muzyka oraz rap.</p>
-            </div>
-          </div>
-          <h3 class="heading-box">Nastrój</h3>
-          <div class="preference__third-type">
-            <div [ngClass]="'relax' === this.currentMood ? 'preference__card-chosen preference__card-3': 'preference__card preference__card-3'"(click)="choseCard('relax')">
-              <i class="preference__card-icon preference__card-icon-3 flaticon-yoga"></i>
-              <h3 class="heading-tertiary u-margin-bottom-small">Relaks</h3>
-              <p class="preference__card-text">Do snu, odpoczynku i nauki. Dla marzycieli.</p>
-            </div>
-            <div [ngClass]="'easy' === this.currentMood ? 'preference__card-chosen preference__card-3': 'preference__card preference__card-3'"(click)="choseCard('easy')">
-              <i class="preference__card-icon preference__card-icon-3 flaticon-beer"></i>
-              <h3 class="heading-tertiary u-margin-bottom-small">Lekka</h3>
-              <p class="preference__card-text">Do podróże, na spacery lub do codziennych czynności.</p>
-            </div>
-              <div [ngClass]="'energy' === this.currentMood ? 'preference__card-chosen preference__card-3': 'preference__card preference__card-3'"(click)="choseCard('energy')">
-                <i class="preference__card-icon preference__card-icon-3 flaticon-group"></i>
-                <h3 class="heading-tertiary u-margin-bottom-small">Energiczna</h3>
-                <p class="preference__card-text">Na imprezy i koncerty, do tańczenia.</p>
+        <h4 class="heading-centered">Wybierz interesujące Cie parametry.</h4>
+        <h4 class="heading-centered">
+          Odkryj muzykę, która jest idealna dla Twoich potrzeb.
+        </h4>
+        <div id="displaydest" class="preference__main">
+          <div class="preference__box">
+            <h3 class="heading-box">Czas</h3>
+            <div class="preference__first-type">
+              <div
+                [ngClass]="
+                  'short' === this.currentTime
+                    ? 'preference__card-chosen'
+                    : 'preference__card'
+                "
+                (click)="choseCard('short')"
+              >
+                <i
+                  class="preference__card-icon preference__card-icon-1 flaticon-fast"
+                ></i>
+                <h3 class="heading-tertiary u-margin-bottom-small">Krótkie</h3>
+                <p class="preference__card-text">Długość: &lt; 4min.</p>
               </div>
-          </div>
-          <div class="center-button">
-              <button (click)="sendData()" [disabled]="isDisable" type="submit" class="btn btn-dark">Wyświetl</button>
+              <div
+                [ngClass]="
+                  'long' === this.currentTime
+                    ? 'preference__card-chosen'
+                    : 'preference__card'
+                "
+                (click)="choseCard('long')"
+              >
+                <i
+                  class="preference__card-icon preference__card-icon-1 flaticon-slow"
+                ></i>
+                <h3 class="heading-tertiary u-margin-bottom-small">Długie</h3>
+                <p class="preference__card-text">Długość: &gt; 4min.</p>
+              </div>
+            </div>
+            <h3 class="heading-box">Rodzaj</h3>
+            <div class="preference__second-type">
+              <div
+                [ngClass]="
+                  'instrumental' === this.currentType
+                    ? 'preference__card-chosen preference__card-2'
+                    : 'preference__card preference__card-2'
+                "
+                (click)="choseCard('instrumental')"
+              >
+                <i
+                  class="preference__card-icon preference__card-icon-2 flaticon-orchestra"
+                ></i>
+                <h3 class="heading-tertiary u-margin-bottom-small">
+                  Instrumentalna
+                </h3>
+                <p class="preference__card-text">
+                  Klasyczna, Filmowa, Jazz oraz Funk.
+                </p>
+              </div>
+              <div
+                [ngClass]="
+                  'dance' === this.currentType
+                    ? 'preference__card-chosen preference__card-2'
+                    : 'preference__card preference__card-2'
+                "
+                (click)="choseCard('dance')"
+              >
+                <i
+                  class="preference__card-icon preference__card-icon-2 flaticon-dj"
+                ></i>
+                <h3 class="heading-tertiary u-margin-bottom-small">Taneczna</h3>
+                <p class="preference__card-text">House, Techno oraz Trance.</p>
+              </div>
+              <div
+                [ngClass]="
+                  'guitar' === this.currentType
+                    ? 'preference__card-chosen preference__card-2'
+                    : 'preference__card preference__card-2'
+                "
+                (click)="choseCard('guitar')"
+              >
+                <i
+                  class="preference__card-icon preference__card-icon-2 flaticon-music"
+                ></i>
+                <h3 class="heading-tertiary u-margin-bottom-small">Gitarowa</h3>
+                <p class="preference__card-text">
+                  Rock alternatywny oraz o ostrym brzmieniu.
+                </p>
+              </div>
+              <div
+                [ngClass]="
+                  'party' === this.currentType
+                    ? 'preference__card-chosen preference__card-2'
+                    : 'preference__card preference__card-2'
+                "
+                (click)="choseCard('party')"
+              >
+                <i
+                  class="preference__card-icon preference__card-icon-2 flaticon-musician"
+                ></i>
+                <h3 class="heading-tertiary u-margin-bottom-small">
+                  Rozrywkowa
+                </h3>
+                <p class="preference__card-text">
+                  Popularna, radiowa muzyka oraz rap.
+                </p>
+              </div>
+            </div>
+            <h3 class="heading-box">Nastrój</h3>
+            <div class="preference__third-type">
+              <div
+                [ngClass]="
+                  'relax' === this.currentMood
+                    ? 'preference__card-chosen preference__card-3'
+                    : 'preference__card preference__card-3'
+                "
+                (click)="choseCard('relax')"
+              >
+                <i
+                  class="preference__card-icon preference__card-icon-3 flaticon-yoga"
+                ></i>
+                <h3 class="heading-tertiary u-margin-bottom-small">Relaks</h3>
+                <p class="preference__card-text">
+                  Do snu, odpoczynku i nauki. Dla marzycieli.
+                </p>
+              </div>
+              <div
+                [ngClass]="
+                  'easy' === this.currentMood
+                    ? 'preference__card-chosen preference__card-3'
+                    : 'preference__card preference__card-3'
+                "
+                (click)="choseCard('easy')"
+              >
+                <i
+                  class="preference__card-icon preference__card-icon-3 flaticon-beer"
+                ></i>
+                <h3 class="heading-tertiary u-margin-bottom-small">Lekka</h3>
+                <p class="preference__card-text">
+                  Do podróże, na spacery lub do codziennych czynności.
+                </p>
+              </div>
+              <div
+                [ngClass]="
+                  'energy' === this.currentMood
+                    ? 'preference__card-chosen preference__card-3'
+                    : 'preference__card preference__card-3'
+                "
+                (click)="choseCard('energy')"
+              >
+                <i
+                  class="preference__card-icon preference__card-icon-3 flaticon-group"
+                ></i>
+                <h3 class="heading-tertiary u-margin-bottom-small">
+                  Energiczna
+                </h3>
+                <p class="preference__card-text">
+                  Na imprezy i koncerty, do tańczenia.
+                </p>
+              </div>
+            </div>
+            <div class="center-button">
+              <button
+                (click)="sendData()"
+                [disabled]="isDisable"
+                type="submit"
+                class="btn btn-dark"
+              >
+                Wyświetl
+              </button>
               <div *ngIf="showLoadingIndicator" [@enterAnimation]>
                 <p class="spinner-info">Dodaje informacje.. Analizuje plik..</p>
                 <mat-progress-spinner
                   class="spinner-circle"
                   [color]="color"
                   [mode]="mode"
-                  [value]="value">
+                  [value]="value"
+                >
                 </mat-progress-spinner>
               </div>
+            </div>
           </div>
-        </div>
-        <div id="destination" *ngIf="songs" [@enterAnimation] class="preference__display">
-          <div class="preference__display-box">
-            <p class="preference__count">Ilość znalezionych wyników: {{ songs.length }}</p>
-            <app-player-box-complex
-              *ngFor="let song of songs | slice:0:show; let i=index"
-              [song]="song"
-              [show-add]="true"
-              [show-delete]="false"
-              [masterArray]="songs"
-              (addSong)="addSong($event)">
-            </app-player-box-complex>
-            <div class="center-button2">
-              <a class="button-more button-more-white button-more-animated" *ngIf="show < songs.length" (click)="increaseShow()">Rozwiń</a>
+          <div *ngIf="songs" [@enterAnimation] class="preference__display">
+            <div class="preference__display-box">
+              <p class="preference__count">
+                Ilość znalezionych wyników: {{ songs.length }}
+              </p>
+              <app-player-box-complex
+                *ngFor="let song of (songs | slice: 0:show); let i = index"
+                [song]="song"
+                [show-add]="true"
+                [show-delete]="false"
+                [masterArray]="songs"
+                (addSong)="addSong($event)"
+              >
+              </app-player-box-complex>
+              <div class="center-button2">
+                <a
+                  class="button-more button-more-white button-more-animated"
+                  *ngIf="show < songs.length"
+                  (click)="increaseShow()"
+                  >Rozwiń</a
+                >
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="col">
+      <div class="col"></div>
     </div>
   </div>
 </div>

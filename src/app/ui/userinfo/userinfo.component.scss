@@ -1,10 +1,14 @@
 .col {
-  background-image: linear-gradient(to right bottom, #D7E1EC, #FFFFFF);
+  background-image: linear-gradient(to right bottom, #d7e1ec, #ffffff);
   filter: blur(4px);
 }
 
 .col-lg-12 {
   padding: 0;
+}
+
+.container {
+  margin-top: 0px !important;
 }
 
 mat-form-field {
@@ -48,12 +52,12 @@ mat-button-toggle {
 }
 
 .main-box {
-  background-image: linear-gradient(to right bottom, #D7E1EC, #FFFFFF);
-  -webkit-box-shadow: 1px 1px 2px 0 #CCCCCC;
-  -moz-box-shadow: 1px 1px 2px 0 #CCCCCC;
-  -o-box-shadow: 1px 1px 2px 0 #CCCCCC;
-  -ms-box-shadow: 1px 1px 2px 0 #CCCCCC;
-  box-shadow: 1px 1px 2px 0 #CCCCCC;
+  background-image: linear-gradient(to right bottom, #d7e1ec, #ffffff);
+  -webkit-box-shadow: 1px 1px 2px 0 #cccccc;
+  -moz-box-shadow: 1px 1px 2px 0 #cccccc;
+  -o-box-shadow: 1px 1px 2px 0 #cccccc;
+  -ms-box-shadow: 1px 1px 2px 0 #cccccc;
+  box-shadow: 1px 1px 2px 0 #cccccc;
   //margin-bottom: 16px;
   -webikt-border-radius: 3px;
   -moz-border-radius: 3px;
@@ -84,9 +88,9 @@ mat-button-toggle {
 
 a {
   color: #3498db;
-  outline: none!important;
+  outline: none !important;
 }
-.user-list tbody td>img {
+.user-list tbody td > img {
   position: relative;
   max-width: 50px;
   float: left;

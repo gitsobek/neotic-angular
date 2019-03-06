@@ -1,37 +1,57 @@
 <div id="music-destination" class="container">
   <div class="row align-items-start">
-    <div class="col">
-    </div>
+    <div class="col"></div>
     <div class="col-sm-10">
       <div class="container">
         <div class="jumbotron">
-          <p class="message">Posłuchaj co jest obecnie na czasie w neo-tycznym społeczeństwie</p>
-          <mat-tab-group mat-stretch-tabs dynamicHeight (selectedTabChange)="onLinkClick($event)">
+          <p class="message">
+            Posłuchaj co jest obecnie na czasie w neo-tycznym społeczeństwie
+          </p>
+          <mat-tab-group
+            mat-stretch-tabs
+            dynamicHeight
+            (selectedTabChange)="onLinkClick($event)"
+          >
             <mat-tab label="Rap">
-              <div class="large-box mat-elevation-z4">
-                <app-player-box *ngFor="let song of songs" [song]="song"></app-player-box>
+              <p *ngIf="!songs.length">Brak piosenek.</p>
+              <div *ngIf="songs.length" class="large-box mat-elevation-z4">
+                <app-player-box
+                  *ngFor="let song of songs"
+                  [song]="song"
+                ></app-player-box>
               </div>
             </mat-tab>
             <mat-tab label="House">
-              <div class="large-box mat-elevation-z4">
-                <app-player-box *ngFor="let song of songs" [song]="song"></app-player-box>
+              <p *ngIf="!songs.length">Brak piosenek.</p>
+              <div *ngIf="songs.length" class="large-box mat-elevation-z4">
+                <app-player-box
+                  *ngFor="let song of songs"
+                  [song]="song"
+                ></app-player-box>
               </div>
             </mat-tab>
             <mat-tab label="Funk">
-              <div class="large-box mat-elevation-z4">
-                <app-player-box *ngFor="let song of songs" [song]="song"></app-player-box>
+              <p *ngIf="!songs.length">Brak piosenek.</p>
+              <div *ngIf="songs.length" class="large-box mat-elevation-z4">
+                <app-player-box
+                  *ngFor="let song of songs"
+                  [song]="song"
+                ></app-player-box>
               </div>
             </mat-tab>
             <mat-tab label="Rock">
-              <div class="large-box mat-elevation-z4">
-                <app-player-box *ngFor="let song of songs" [song]="song"></app-player-box>
+              <p *ngIf="!songs.length">Brak piosenek.</p>
+              <div *ngIf="songs.length" class="large-box mat-elevation-z4">
+                <app-player-box
+                  *ngFor="let song of songs"
+                  [song]="song"
+                ></app-player-box>
               </div>
             </mat-tab>
           </mat-tab-group>
         </div>
       </div>
     </div>
-    <div class="col">
-    </div>
+    <div class="col"></div>
   </div>
 </div>

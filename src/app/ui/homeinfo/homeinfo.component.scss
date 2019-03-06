@@ -1,5 +1,9 @@
 @import "src/assets/scss/imports";
 
+.container {
+  margin-top: 0px !important;
+}
+
 .padding {
   padding-bottom: 2rem;
 }
@@ -12,12 +16,12 @@
 .welcome hr {
   border-top: 2px solid #b4b4b4;
   width: 95%;
-  margin-top: .6rem;
+  margin-top: 0.6rem;
   margin-bottom: 2rem;
 }
 
 .container-fluid {
-  background: #13191E url("/src/assets/img/pattern.svg") top left/auto repeat;
+  background: #13191e url("/src/assets/img/pattern.svg") top left/auto repeat;
 }
 
 .display-4 {
@@ -43,6 +47,7 @@
   }
 }
 
-h1, h3 {
+h1,
+h3 {
   color: white;
 }
