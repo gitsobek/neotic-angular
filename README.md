@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://i.ibb.co/K6ysJVv/milky-way-2.png">
+  <img src="https://i.ibb.co/72LLK3q/milky-way-2.png">
 </p>
 
 # Application
@@ -9,5 +9,5 @@ Click the link to watch the overview of this application on YouTube!<br/>
 # Build
 At first, make sure you have installed latest stable version of MongoDB and cloned the neotic-api project. Run mongod (daemon process) and API. Serve this project with hot reload at localhost:4200:
 ```bash
-  $ ng serve -o
+ $ ng serve -o
 ```
